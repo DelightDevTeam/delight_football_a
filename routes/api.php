@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\LoginController;
+use App\Http\Controllers\Api\V1\MarketController;
 use App\Http\Controllers\Api\V1\TestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,4 +24,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(["prefix" => "v1"], function () {
     Route::post("login", [LoginController::class, "login"]);
     Route::post("test", TestController::class);
+
+    Route::get("markets", MarketController::class);
 });

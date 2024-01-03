@@ -22,7 +22,7 @@ class FixtureSeeder extends Seeder
             })->values();
 
             $away_teams =  $league->teams->filter(function ($value, $index) {
-                return $index % 2 !== 0;
+                return $index % 2 == 0;
             })->values();
 
             foreach ($home_teams as $index => $home_team) {

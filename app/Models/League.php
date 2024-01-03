@@ -16,6 +16,10 @@ class League extends Model
         'active',
     ];
 
+    public function fixtures(){
+        return $this->hasMany(Fixture::class);
+    }
+
     public function teams(){
         return $this->belongsToMany(Team::class);
     }
