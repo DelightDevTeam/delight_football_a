@@ -14,16 +14,15 @@ return new class extends Migration
         Schema::create('markets', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger("scrapper_id")->nullable();
+            $table->unsignedInteger("league_id");
             $table->unsignedInteger("fixture_id");
             $table->unsignedInteger("upper_team_id");
             $table->unsignedInteger("lower_team_id");
             $table->unsignedInteger("handicap_team_id");
-            $table->json("hdp")->nullable();
-            $table->float("hdp_home")->nullable();
-            $table->float("hdp_away")->nullable();
+            $table->json("ab")->nullable();
+            $table->float("ab_odd")->nullable();
             $table->json("ou")->nullable();
-            $table->float("ou_over")->nullable();
-            $table->float("ou_under")->nullable();
+            $table->float("ou_odd")->nullable();
             $table->timestamps();
         });
     }

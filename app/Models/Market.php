@@ -11,24 +11,25 @@ class Market extends Model
 
     protected $fillable = [
         "scrapper_id",
+        "league_id",
         "fixture_id",
         "upper_team_id",
         "lower_team_id",
         "handicap_team_id",
-        "hdp",
-        "hdp_home",
-        "hdp_away",
+        "ab",
+        "ab_odd",
         "ou",
-        "ou_over",
-        "ou_under",
+        "ou_odd",
     ];
 
     protected $casts = [
-        'hdp' => 'json',
+        'ab' => 'json',
+        'ab_odd' => 'decimal:2',
         'ou' => 'json',
-        'hdp_home' => 'decimal:2',
-        'hdp_away' => 'decimal:2',
-        'ou_over' => 'decimal:2',
-        'ou_under' => 'decimal:2',
+        'ou_odd' => 'decimal:2',
     ];
+
+    public function fixture(){
+        return $this->belongsTo(Fixture::class);
+    }
 }

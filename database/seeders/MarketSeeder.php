@@ -50,6 +50,7 @@ class MarketSeeder extends Seeder
 
         return array_merge(
             [
+                "league_id" => $fixture->league_id,
                 "upper_team_id" => $upper_team_id,
                 "lower_team_id" => $lower_team_id,
                 "handicap_team_id" => $this->flip() ? $upper_team_id : $lower_team_id,
@@ -65,9 +66,8 @@ class MarketSeeder extends Seeder
             $odd = rand(50, 99) / 100;
 
             return [
-                "hdp" => [rand(0, 3), rand(0, 100)],
-                "hdp_home" => $odd,
-                "hdp_away" => $odd,
+                "ab" => [rand(0, 3), rand(0, 100)],
+                "ab_odd" => $odd,
             ];
         }
 
@@ -81,8 +81,7 @@ class MarketSeeder extends Seeder
 
             return [
                 "ou" => [rand(0, 3), rand(0, 100)],
-                "ou_over" => $odd,
-                "ou_under" => $odd,
+                "ou_odd" => $odd,
             ];
         }
 
