@@ -26,4 +26,12 @@ class Slip extends Model
     {
         return $this->morphTo('bettable');
     }
+
+    public function isPending(){
+        return $this->status == BetStatus::Pending;
+    }
+
+    public function isOngoing(){
+        return $this->status == BetStatus::Ongoing;
+    }
 }

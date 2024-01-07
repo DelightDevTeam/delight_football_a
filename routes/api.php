@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\BetController;
 use App\Http\Controllers\Api\V1\LoginController;
 use App\Http\Controllers\Api\V1\MarketController;
 use App\Http\Controllers\Api\V1\ParlayController;
@@ -29,6 +30,9 @@ Route::group(["prefix" => "v1"], function () {
     Route::get("markets", MarketController::class);
 
     Route::group(["middleware" => ["auth:sanctum"]], function () {
-        Route::post("parlays", ParlayController::class);
+        Route::post("singles", [BetController::class, "storeSingle"]);
+        Route::post("singles/{slip}/confirm", [BetController::class, "confirmSingle"]);
+        Route::post("parlays", [BetController::class, "storeParlay"]);
+        Route::post("parlays/{slip}/confirm", [BetController::class, "confirmParlay"]);
     });
 });

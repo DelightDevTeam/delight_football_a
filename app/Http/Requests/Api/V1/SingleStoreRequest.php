@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Api\V1;
 
-use App\Enums\BetType;
 use App\Enums\AbSelectableSide;
+use App\Enums\BetType;
 use App\Enums\OuSelectableSide;
 use App\Models\Market;
 use Closure;
@@ -11,9 +11,9 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Enum;
 
-class ParlayStoreRequest extends FormRequest
-{
-    protected array $bets;
+class SingleStoreRequest extends FormRequest
+{   
+    protected array $bet = [];
 
     /**
      * Determine if the user is authorized to make this request.
@@ -36,25 +36,15 @@ class ParlayStoreRequest extends FormRequest
                 'numeric',
                 'min:1000',
             ],
-            'bets' => [
+            'bet' => [
                 'required',
-                'array',
-                'min:2'
             ],
-            'bets.*.market_id' => ['required', 'exists:markets,id', function ($attribute, $value, Closure $fail) {
-                $index = explode('.', $attribute)[1];
-                foreach ($this->input("bets") as $index_2 => $bet) {
-                    if ($index != $index_2 && $bet["market_id"] == $value) {
-                        $fail("Cant have same market id for {$attribute}");
-                    }
-                }
-            }],
-            'bets.*.type' => [
+            'bet.market_id' => ['required', 'exists:markets,id'],
+            'bet.type' => [
                 'required',
                 new Enum(BetType::class),
                 function ($attribute, $value, Closure $fail) {
-                    $index = explode('.', $attribute)[1];
-                    $market_id = $this->input("bets.{$index}.market_id");
+                    $market_id = $this->input("bet.market_id");
 
                     if (BetType::tryFrom($value)) {
                         $market = Market::whereNotNull($value)->where("id", $market_id)->first();
@@ -65,9 +55,8 @@ class ParlayStoreRequest extends FormRequest
                     }
                 }
             ],
-            'bets.*.selected_side' => Rule::forEach(function ($value, $attribute) {
-                $index = explode('.', $attribute)[1];
-                $type = $this->input("bets.{$index}.type");
+            'bet.selected_side' => Rule::forEach(function ($value, $attribute) {
+                $type = $this->input("bet.type");
 
                 return [
                     "required",
@@ -79,18 +68,11 @@ class ParlayStoreRequest extends FormRequest
         ];
     }
 
-    public function bets()
-    {
-        $bets = [];
-
-        foreach ($this->input("bets") as $bet) {
-            $bets[] = [
-                "market" => Market::whereNotNull($bet["type"])->where("id", $bet["market_id"])->first(),
-                "type" => BetType::from($bet["type"]),
-                "selected_side" => $bet["type"] == BetType::Ab->value ? AbSelectableSide::from($bet["selected_side"]) : OuSelectableSide::from($bet["selected_side"])
-            ];
-        }
-
-        return $bets;
+    public function bet(){
+        return $this->bet = [
+            "market" => Market::whereNotNull($this->input("bet.type"))->where("id", $this->input("bet.market_id"))->first(),
+            "type" => BetType::from($this->input("bet.type")),
+            "selected_side" => $this->input("bet.type") == BetType::Ab->value ? AbSelectableSide::from($this->input("bet.selected_side")) : OuSelectableSide::from($this->input("bet.selected_side"))
+        ];
     }
 }

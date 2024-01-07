@@ -2,22 +2,28 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Enums\BetStatus;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\V1\ParlayConfirmRequest;
 use App\Http\Requests\Api\V1\ParlayStoreRequest;
 use App\Http\Resources\Api\V1\SlipResource;
 use App\Models\Parlay;
+use App\Models\ParlayBet;
+use App\Models\Slip;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
+// TODO: make common controller for single bet
 class ParlayController extends Controller
 {
-    public function __invoke(ParlayStoreRequest $request)
+    public function store(ParlayStoreRequest $request)
     {
+        // TODO: possible_payout
+
         $parlay = Parlay::create([
             "user_id" => $request->user()->id,
             "amount" => $request->validated("amount"),
-            // TODO
             // "possible_payout" => $eee,
         ]);
 
@@ -51,5 +57,49 @@ class ParlayController extends Controller
                 "slip" => new SlipResource($slip)
             ]
         ]);
+    }
+
+    public function confirm(Slip $slip){
+        if(!$slip->isPending()){
+            return response()->error([
+                "message" => "Slip can't confirm twice",
+            ], 422);
+        }
+
+        $slip->load("bettable.parlayBets");
+
+            foreach($slip->bettable->parlayBets as $bet){
+                if(!$this->validateMarketData($bet)){
+                    return response()->error([
+                        "message" => "Market has been changed",
+                    ], 422);
+                };
+
+                $slip->update([
+                    "status" => BetStatus::Ongoing
+                ]);
+            }
+
+            return response()->success([
+                "data" => [
+                    "slip" => new SlipResource($slip)
+                ]
+                ]);
+    }
+
+    private function validateMarketData(ParlayBet $bet){
+        $market = $bet->load("market");
+        
+        if(!$market){
+            return false;
+        }
+
+        $now = now();
+
+        if($market->created_at->gt($now) && $market->created_at->diffInMinutes($now) > 3){
+            return false;
+        }
+
+        return true;
     }
 }
