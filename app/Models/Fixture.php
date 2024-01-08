@@ -36,6 +36,16 @@ class Fixture extends Model
         return $this->hasMany(Market::class);
     }
 
+    public function singles()
+    {
+        return $this->hasMany(Single::class);
+    }
+
+    public function parlayBets()
+    {
+        return $this->hasMany(ParlayBet::class);
+    }
+
     public function latestMarket()
     {
         return $this->hasOne(Market::class)->latestOfMany();
@@ -56,5 +66,8 @@ class Fixture extends Model
         return $this->where("ft_status", FixtureStatus::NS);
     }
 
-    
+    public function scopeWhereFinished()
+    {
+        return $this->whereNot("ft_status", FixtureStatus::NS);
+    }
 }

@@ -20,17 +20,7 @@ class CalculateParlayService extends CalculateSlipService
     public function calculateParlayBetWinPercents()
     {
         foreach ($this->parlay->parlayBets as $parlay_bet) {
-            $selected_side = $parlay_bet->getSelectedSide();
-            $upper_team_goal = $parlay_bet->getUpperTeamGoal();
-            $lower_team_goal = $parlay_bet->getLowerTeamGoal();
-            $handicap = $parlay_bet->getHandicap();
-
-            $win_percent = (new CalculateSingleBetService(
-                $selected_side,
-                $upper_team_goal,
-                $lower_team_goal,
-                $handicap
-            ))->calculateWinPercent()->getWinPercent();
+            $win_percent = (new CalculateParlayBetService($parlay_bet))->calculateWinPercent()->getWinPercent();
 
             $this->parlay_bet_win_percents[] = [
                 "parlay_bet_id" => $parlay_bet->id,

@@ -14,6 +14,7 @@ class Slip extends Model
         "uuid",
         "user_id",
         "amount",
+        "profit",
         "payout",
         "status",
     ];
@@ -25,6 +26,11 @@ class Slip extends Model
     public function bettable()
     {
         return $this->morphTo('bettable');
+    }
+
+    public function scopeWhereIsOngoing()
+    {
+        return $this->where("status", BetStatus::Ongoing);
     }
 
     public function isPending(){

@@ -46,6 +46,10 @@ class ParlayBet extends Model
         return $this->belongsTo(Market::class);
     }
 
+    public function parlay(){
+        return $this->belongsTo(Parlay::class);
+    }
+
     public function fixture()
     {
         return $this->belongsTo(Fixture::class);
