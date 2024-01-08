@@ -16,6 +16,8 @@ use App\Models\ParlayBet;
 use App\Models\Single;
 use App\Models\Slip;
 use App\Models\User;
+use App\Services\Calculation\CalculateParlayService;
+use App\Services\Calculation\CalculateSingleService;
 use Illuminate\Support\Str;
 
 class BetController extends Controller
@@ -29,9 +31,18 @@ class BetController extends Controller
         $bet_type = $bet["type"];
         $selected_side = $bet["selected_side"];
 
+
         $single = Single::create([
-            ...["amount" => $request->validated("amount")],
+            ...[
+                "amount" => $request->validated("amount"),
+            ],
             ...$this->getBaseDataForBet($user, $market, $bet_type, $selected_side)
+        ]);
+
+        $calculateSingleService = new CalculateSingleService($single);
+
+        $single->update([
+            "possible_payout" => $calculateSingleService->setWinPercent(100)->getPayout()
         ]);
 
         $slip = $this->storeSlip($single);
@@ -85,13 +96,26 @@ class BetController extends Controller
 
         $user = $request->user();
 
+        $win_percents = [];
+
         foreach ($request->bets() as $bet) {
             $market = $bet["market"];
             $bet_type = $bet["type"];
             $selected_side = $bet["selected_side"];
 
-            $parlay->parlayBets()->create($this->getBaseDataForBet($user, $market, $bet_type, $selected_side));
+            $parlay_bet = $parlay->parlayBets()->create($this->getBaseDataForBet($user, $market, $bet_type, $selected_side));
+
+            $win_percents[] = [
+                "parlay_bet_id" => $parlay_bet->id,
+                "win_percent" => 100
+            ];
         }
+
+        $calculateSingleService = new CalculateParlayService($parlay);
+
+        $parlay->update([
+            "possible_payout" => $calculateSingleService->setParlayBetWinPercents($win_percents)->getPayout()
+        ]);
 
         $slip = $this->storeSlip($parlay);
 

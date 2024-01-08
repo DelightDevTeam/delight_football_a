@@ -18,7 +18,7 @@ class SlipResource extends JsonResource
             "id" => $this->id,
             "amount" => $this->amount,
             "uuid" => substr($this->uuid, -6),
-            "possible_payout" => $this->possible_payout
+            "possible_payout" => $this->bettable->possible_payout
         ];
     }
 }
