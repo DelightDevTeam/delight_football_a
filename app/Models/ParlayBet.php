@@ -24,6 +24,7 @@ class ParlayBet extends Model
         "away_team_id",
         "upper_team_id",
         "lower_team_id",
+        "handicap_team_id",
         "status",
         "win_percent",
         "type",

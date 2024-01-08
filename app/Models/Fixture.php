@@ -51,6 +51,11 @@ class Fixture extends Model
         return $this->hasOne(Market::class)->latestOfMany();
     }
 
+    public function league()
+    {
+        return $this->belongsTo(League::class);
+    }
+
     public function homeTeam()
     {
         return $this->belongsTo(Team::class, 'home_team_id');
@@ -61,13 +66,13 @@ class Fixture extends Model
         return $this->belongsTo(Team::class, 'away_team_id');
     }
 
-    public function scopeWhereNotStarted()
+    public function scopeWhereNotStarted($q)
     {
-        return $this->where("ft_status", FixtureStatus::NS);
+        $q->where("ft_status", FixtureStatus::NS);
     }
 
-    public function scopeWhereFinished()
+    public function scopeWhereFinished($q)
     {
-        return $this->whereNot("ft_status", FixtureStatus::NS);
+        $q->whereNot("ft_status", FixtureStatus::NS);
     }
 }

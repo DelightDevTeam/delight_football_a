@@ -6,6 +6,7 @@ use App\Enums\AbSelectableSide;
 use App\Enums\BetStatus;
 use App\Enums\BetType;
 use App\Enums\OuSelectableSide;
+use App\Enums\SlipType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\ParlayStoreRequest;
 use App\Http\Requests\Api\V1\SingleStoreRequest;
@@ -56,6 +57,12 @@ class BetController extends Controller
 
     public function confirmSingle(Slip $slip)
     {
+        if ($slip->bettable_type != SlipType::Single) {
+            return response()->error([
+                "message" => "Can't confirm this type of slip",
+            ], 422);
+        }
+
         if (!$slip->isPending()) {
             return response()->error([
                 "message" => "Slip can't confirm twice",
@@ -128,6 +135,12 @@ class BetController extends Controller
 
     public function confirmParlay(Slip $slip)
     {
+        if ($slip->bettable_type != SlipType::Parlay) {
+            return response()->error([
+                "message" => "Can't confirm this type of slip",
+            ], 422);
+        }
+
         if (!$slip->isPending()) {
             return response()->error([
                 "message" => "Slip can't confirm twice",
@@ -145,6 +158,10 @@ class BetController extends Controller
         }
 
         $slip->bettable->parlayBets()->update([
+            "status" => BetStatus::Ongoing
+        ]);
+
+        $slip->bettable->update([
             "status" => BetStatus::Ongoing
         ]);
 
@@ -180,6 +197,7 @@ class BetController extends Controller
             "league_id" => $market->league_id,
             "fixture_id" => $market->fixture_id,
             "market_id" => $market->id,
+            "handicap_team_id" => $market->handicap_team_id,
             "type" => $bet_type->value,
             "{$bet_type->value}_obj" => [
                 "handicap" => $market->{$bet_type->value},

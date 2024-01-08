@@ -24,6 +24,7 @@ return new class extends Migration
             $table->unsignedInteger("away_team_id");
             $table->unsignedInteger("upper_team_id");
             $table->unsignedInteger("lower_team_id");
+            $table->unsignedInteger("handicap_team_id");
             $table->string("status")->default(BetStatus::Pending->value);
             $table->integer("win_percent")->nullable();
             $table->string("type");

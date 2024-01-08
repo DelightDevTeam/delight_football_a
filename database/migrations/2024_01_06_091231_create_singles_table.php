@@ -22,6 +22,7 @@ return new class extends Migration
             $table->unsignedInteger("away_team_id");
             $table->unsignedInteger("upper_team_id");
             $table->unsignedInteger("lower_team_id");
+            $table->unsignedInteger("handicap_team_id");
             $table->decimal("amount");
             $table->decimal("possible_payout")->nullable();
             $table->decimal("profit")->nullable();

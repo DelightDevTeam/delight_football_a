@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\BetStatus;
+use App\Enums\SlipType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,7 +21,8 @@ class Slip extends Model
     ];
 
     protected $casts = [
-        "status" => BetStatus::class
+        "status" => BetStatus::class,
+        "bettable_type" => SlipType::class
     ];
 
     public function bettable()
@@ -28,10 +30,16 @@ class Slip extends Model
         return $this->morphTo('bettable');
     }
 
-    public function scopeWhereIsOngoing()
+    public function scopeWhereIsOngoing($q)
     {
-        return $this->where("status", BetStatus::Ongoing);
+        return $q->where("status", BetStatus::Ongoing);
     }
+
+    public function scopeWhereIsCalculated($q)
+    {
+        $q->whereNotIn("status", [BetStatus::Pending, BetStatus::Ongoing]);
+    }
+
 
     public function isPending(){
         return $this->status == BetStatus::Pending;
