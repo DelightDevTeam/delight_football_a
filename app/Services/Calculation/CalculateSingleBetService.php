@@ -11,10 +11,10 @@ class CalculateSingleBetService
     protected int $win_percent;
 
     public function __construct(
-        public AbSelectableSide|OuSelectableSide $selected_side,
-        public int $upper_team_goal,
-        public int $lower_team_goal,
-        public array $handicap
+        protected AbSelectableSide|OuSelectableSide $selected_side,
+        protected int $upper_team_goal,
+        protected int $lower_team_goal,
+        protected array $handicap
     ) {
     }
 
