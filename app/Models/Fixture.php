@@ -55,4 +55,6 @@ class Fixture extends Model
     {
         return $this->where("ft_status", FixtureStatus::NS);
     }
+
+    
 }

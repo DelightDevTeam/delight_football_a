@@ -7,7 +7,6 @@ use App\Enums\BetStatus;
 use App\Enums\BetType;
 use App\Enums\OuSelectableSide;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\V1\ParlayConfirmRequest;
 use App\Http\Requests\Api\V1\ParlayStoreRequest;
 use App\Http\Requests\Api\V1\SingleStoreRequest;
 use App\Http\Resources\Api\V1\SlipResource;
@@ -17,8 +16,6 @@ use App\Models\ParlayBet;
 use App\Models\Single;
 use App\Models\Slip;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class BetController extends Controller
@@ -149,6 +146,11 @@ class BetController extends Controller
 
     protected function getBaseDataForBet(User $user, Market $market, BetType $bet_type, AbSelectableSide | OuSelectableSide $selected_side)
     {
+        $fixture = $market->fixture;
+
+        $upper_team_id = $fixture->home_team_id == $market->upper_team_id ? $fixture->home_team_id : $fixture->away_team_id;
+        $lower_team_id = $fixture->home_team_id == $market->upper_team_id ? $fixture->away_team_id : $fixture->home_team_id;
+
         return [
             "user_id" => $user->id,
             "league_id" => $market->league_id,
@@ -159,13 +161,17 @@ class BetController extends Controller
                 "handicap" => $market->{$bet_type->value},
                 "odd" => $market->{"{$bet_type->value}_odd"}
             ],
+            "home_team_id" => $fixture->home_team_id,
+            "away_team_id" => $fixture->away_team_id,
+            "upper_team_id" => $upper_team_id,
+            "lower_team_id" => $lower_team_id,
             "{$bet_type->value}_selected_side" => $selected_side
         ];
     }
 
-    private function validateMarketData(Single | ParlayBet $bet)
+    private function validateMarketData(Single | ParlayBet $single_bet)
     {
-        $market = $bet->load("market");
+        $market = $single_bet->load("market");
 
         if (!$market) {
             return false;

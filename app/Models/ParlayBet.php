@@ -4,13 +4,15 @@ namespace App\Models;
 
 use App\Enums\BetStatus;
 use App\Enums\AbSelectableSide;
+use App\Enums\BetType;
 use App\Enums\OuSelectableSide;
+use App\Models\Traits\SingleBetTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class ParlayBet extends Model
 {
-    use HasFactory;
+    use HasFactory, SingleBetTrait;
 
     protected $fillable = [
         "user_id",
@@ -18,6 +20,10 @@ class ParlayBet extends Model
         "league_id",
         "fixture_id",
         "market_id",
+        "home_team_id",
+        "away_team_id",
+        "upper_team_id",
+        "lower_team_id",
         "status",
         "win_percent",
         "type",
@@ -29,6 +35,7 @@ class ParlayBet extends Model
 
     protected $casts = [
         "status" => BetStatus::class,
+        "type" => BetType::class,
         'ab_obj' => 'json',
         'ab_selected_side' => AbSelectableSide::class,
         'ou_obj' => 'json',
@@ -37,5 +44,10 @@ class ParlayBet extends Model
 
     public function market(){
         return $this->belongsTo(Market::class);
+    }
+
+    public function fixture()
+    {
+        return $this->belongsTo(Fixture::class);
     }
 }

@@ -18,8 +18,13 @@ return new class extends Migration
             $table->unsignedInteger("league_id");
             $table->unsignedInteger("fixture_id");
             $table->unsignedInteger("market_id");
+            $table->unsignedInteger("home_team_id");
+            $table->unsignedInteger("away_team_id");
+            $table->unsignedInteger("upper_team_id");
+            $table->unsignedInteger("lower_team_id");
             $table->decimal("amount");
             $table->decimal("possible_payout")->nullable();
+            $table->decimal("profit")->nullable();
             $table->decimal("payout")->nullable();
             $table->json("commission_setting_obj")->nullable();
             $table->string("status")->default(BetStatus::Pending->value);

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedInteger("user_id");
             $table->decimal("amount");
             $table->decimal("possible_payout")->nullable();
+            $table->decimal("profit")->nullable();
             $table->decimal("payout")->nullable();
             $table->json("commission_setting_obj")->nullable();
             $table->string("status")->default(BetStatus::Pending->value);

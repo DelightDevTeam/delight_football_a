@@ -14,6 +14,7 @@ class Parlay extends Model
         "user_id",
         "amount",
         "possible_payout",
+        "profit",
         "payout",
         "commission_setting_obj",
         "status",

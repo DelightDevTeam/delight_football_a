@@ -2,25 +2,41 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Enums\AbSelectableSide;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Api\V1\Market\LeagueResource;
-use App\Models\Fixture;
-use App\Models\League;
-use App\Models\Team;
+use App\Models\Parlay;
+use App\Models\Single;
+use App\Models\Slip;
+use App\Services\Calculation\CalculateParlayBetService;
+use App\Services\Calculation\CalculateParlayService;
+use App\Services\Calculation\CalculateSingleBetService;
+use App\Services\Calculation\CalculateSingleService;
 use App\Services\MarketService;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
 
 class TestController extends Controller
 {
     public function __invoke(Request $request)
     {
-        $data = MarketService::ignoreTime()->getMarkets();
+        $slip = Slip::where("bettable_type", Parlay::class)->with("bettable.parlayBets")->first();
 
-        return response()->success([
-            "data" => LeagueResource::collection($data)
-        ]);
+        // foreach($slip->bettable->parlayBets as $parlay_bet){
+        //     $xx = new CalculateParlayBetService($parlay_bet);
+
+        //     return $xx->getWinPercent();
+        // }
+
+        $xx =  new CalculateParlayService($slip->bettable);
+
+        return $xx->setParlayBetWinPercents([
+            [
+                "parlay_bet_id" => 1,
+                "win_percent" => 100
+            ],
+            [
+                "parlay_bet_id" => 1,
+                "win_percent" => 100
+            ],
+        ])->getParlayBetWinPercents();
     }
 }
