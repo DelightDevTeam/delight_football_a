@@ -18,25 +18,16 @@ class TestController extends Controller
 {
     public function __invoke(Request $request)
     {
-        $slip = Slip::where("bettable_type", Parlay::class)->with("bettable.parlayBets")->first();
+        $parlay_slip = Slip::where("bettable_type", Parlay::class)->with("bettable.parlayBets")->first();
 
-        // foreach($slip->bettable->parlayBets as $parlay_bet){
-        //     $xx = new CalculateParlayBetService($parlay_bet);
+        $parlay_service =  new CalculateParlayService($parlay_slip->bettable);
 
-        //     return $xx->getWinPercent();
-        // }
+        $parlay_service->getResult();
 
-        $xx =  new CalculateParlayService($slip->bettable);
+        $single_slip = Slip::where("bettable_type", Single::class)->with("bettable")->first();
 
-        return $xx->setParlayBetWinPercents([
-            [
-                "parlay_bet_id" => 1,
-                "win_percent" => 100
-            ],
-            [
-                "parlay_bet_id" => 1,
-                "win_percent" => 100
-            ],
-        ])->getParlayBetWinPercents();
+        $single_service =  new CalculateSingleService($single_slip->bettable);
+
+        $single_service->getResult();
     }
 }
