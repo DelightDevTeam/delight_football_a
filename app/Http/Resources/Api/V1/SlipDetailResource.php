@@ -16,8 +16,7 @@ class SlipDetailResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            "id" => $this->id,
-            "uuid" => substr($this->uuid, -6),
+            "uuid" => $this->uuid,
             "bettable_type" => $this->bettable_type,
             "bettable" => $this->bettable_type == SlipType::Single ? new SingleResource($this->bettable) : new ParlayResource($this->bettable)
         ];

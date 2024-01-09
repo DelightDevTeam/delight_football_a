@@ -15,9 +15,8 @@ class SlipSummaryResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            "id" => $this->id,
+            "uuid" => $this->uuid,
             "amount" => $this->amount,
-            "uuid" => substr($this->uuid, -6),
             "bettable_type" => $this->bettable_type,
             "parlay_bets_count" => $this->bettable->parlay_bets_count,
             "payout" => $this->bettable->payout,
