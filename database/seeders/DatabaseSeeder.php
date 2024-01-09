@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             RoleUserTableSeeder::class,
             LeagueTeamSeeder::class,
             FixtureSeeder::class,
+            MarketSeeder::class
         ]);
     }
 }
