@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\Api\V1\BetController;
+use App\Http\Controllers\Api\V1\FixtureController;
 use App\Http\Controllers\Api\V1\LoginController;
 use App\Http\Controllers\Api\V1\MarketController;
 use App\Http\Controllers\Api\V1\ParlayController;
 use App\Http\Controllers\Api\V1\SlipController;
 use App\Http\Controllers\Api\V1\TestController;
+use App\Http\Controllers\Api\V1\TransactionRequestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,11 +34,19 @@ Route::group(["prefix" => "v1"], function () {
 
     Route::group(["middleware" => ["auth:sanctum"]], function () {
         Route::post("singles", [BetController::class, "storeSingle"]);
-        Route::post("singles/{slip}/confirm", [BetController::class, "confirmSingle"]);
+        Route::post("singles/{slip:uuid}/confirm", [BetController::class, "confirmSingle"]);
         Route::post("parlays", [BetController::class, "storeParlay"]);
-        Route::post("parlays/{slip}/confirm", [BetController::class, "confirmParlay"]);
+        Route::post("parlays/{slip:uuid}/confirm", [BetController::class, "confirmParlay"]);
 
         Route::get("slips", [SlipController::class, "index"]);
-        Route::get("slips/{slip}", [SlipController::class, "show"]);
+        Route::get("slips/{slip:uuid}", [SlipController::class, "show"]);
+
+        Route::get("transaction-requests", [TransactionRequestController::class, "index"]);
+        Route::get("transaction-requests/{request:uuid}", [TransactionRequestController::class, "show"]);
+
+        Route::post("deposit-requests", [TransactionRequestController::class, "storeDepositRequest"]);
+        Route::post("withdraw-requests", [TransactionRequestController::class, "storeWithdrawRequest"]);
+
+        Route::get("fixtures", FixtureController::class);
     });
 });

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Enums\AbSelectableSide;
+use App\Enums\OuSelectableSide;
 use App\Http\Controllers\Controller;
+use App\Models\League;
 use App\Models\Parlay;
 use App\Models\Single;
 use App\Models\Slip;
@@ -18,16 +20,8 @@ class TestController extends Controller
 {
     public function __invoke(Request $request)
     {
-        $parlay_slip = Slip::where("bettable_type", Parlay::class)->with("bettable.parlayBets")->first();
+        $xx = new CalculateSingleBetService(OuSelectableSide::Over, 3, 2, [3, 3]);
 
-        $parlay_service =  new CalculateParlayService($parlay_slip->bettable);
-
-        $parlay_service->getResult();
-
-        $single_slip = Slip::where("bettable_type", Single::class)->with("bettable")->first();
-
-        $single_service =  new CalculateSingleService($single_slip->bettable);
-
-        $single_service->getResult();
+        return $xx->getWinPercent();
     }
 }

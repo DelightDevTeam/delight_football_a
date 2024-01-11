@@ -2,11 +2,10 @@
 
 namespace App\Http\Resources\Api\V1;
 
-use App\Enums\SlipType;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SlipDetailResource extends JsonResource
+class LeagueResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,9 +15,10 @@ class SlipDetailResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            "uuid" => $this->uuid,
-            "bettable_type" => $this->bettable_type,
-            "bettable" => $this->bettable_type == SlipType::Single ? new SingleResource($this->bettable) : new ParlayResource($this->bettable)
+            "id" => $this->id,
+            "name" => $this->name,
+            "name_my" => $this->name_my,
+            "fixtures" => FixtureResource::collection($this->fixtures)
         ];
     }
 }

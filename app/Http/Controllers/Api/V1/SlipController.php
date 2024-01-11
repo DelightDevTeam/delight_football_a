@@ -33,7 +33,7 @@ class SlipController extends Controller
 
         return response()->success([
             "data" => [
-                "slip" => SlipSummaryResource::collection($slips)
+                "slips" => SlipSummaryResource::collection($slips)
             ]
         ]);
     }
