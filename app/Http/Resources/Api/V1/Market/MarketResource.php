@@ -22,8 +22,7 @@ class MarketResource extends JsonResource
             "ab" => $this->ab,
             "ab_odd" => $this->ab_odd,
             "ou" => $this->ou,
-            "ou_over" => $this->ou_over,
-            "ou_under" => $this->ou_under,
+            "ou_odd" => $this->ou_odd
         ];
     }
 }
