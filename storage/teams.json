@@ -1,0 +1,590 @@
+[
+    {
+        "name": "Melbourne Knights",
+        "name_my": "မဲလ်ဘုန်း နိုက်စ်"
+    },
+    {
+        "name": "Port Melbourne Sharks",
+        "name_my": "ပေါ့မဲဘုန်းနီရှက်စ်"
+    },
+    {
+        "name": "Oakleigh Cannons",
+        "name_my": "အောက်လိန် ကန်နွန်"
+    },
+    {
+        "name": "Altona Magic",
+        "name_my": "အယ်တိုနာမာဂျစ်"
+    },
+    {
+        "name": "South Melbourne",
+        "name_my": "တ/မဲဘုန်းနီ"
+    },
+    {
+        "name": "Avondale FC",
+        "name_my": "အဗွန်ဒါလီFC"
+    },
+    {
+        "name": "SV Grodig",
+        "name_my": "SVဂရိုဒစ်"
+    },
+    {
+        "name": "UFC Siezenheim",
+        "name_my": "UFCဆီဇန်ဟိမ်း"
+    },
+    {
+        "name": "Incheon United",
+        "name_my": "အင်ချွန်း ယူနိုက်တက်"
+    },
+    {
+        "name": "Suwon Samsung Bluewings",
+        "name_my": "ဆူ၀န်ဆမ်ဆောင်းဘလူ၀င်းစ်"
+    },
+    {
+        "name": "Jeonbuk Hyundai Motors",
+        "name_my": "ဂျီအွန်ဘတ်ဟယန်ဒီမိုတော်စ်"
+    },
+    {
+        "name": "Gwangju FC",
+        "name_my": "ဂွမ်ဂျူး"
+    },
+    {
+        "name": "Pohang Steelers",
+        "name_my": "ပိုဟန် စတီးလား"
+    },
+    {
+        "name": "Gangwon FC",
+        "name_my": "ဂန်းဝန်"
+    },
+    {
+        "name": "Ulsan Hyundai FC",
+        "name_my": "အူဆန် ဟွန်ဒိုင်း"
+    },
+    {
+        "name": "Jeju United",
+        "name_my": "ဂျီဂျူယူနိုက်တက်"
+    },
+    {
+        "name": "Pas Hamedan",
+        "name_my": null
+    },
+    {
+        "name": "Shohada Razakan FC",
+        "name_my": null
+    },
+    {
+        "name": "Kian Sam Babol",
+        "name_my": null
+    },
+    {
+        "name": "Sepidrood Rasht SC",
+        "name_my": null
+    },
+    {
+        "name": "Spad Alvand",
+        "name_my": null
+    },
+    {
+        "name": "Shahrdari Hamedan",
+        "name_my": null
+    },
+    {
+        "name": "Kavir Moghava Tehran",
+        "name_my": null
+    },
+    {
+        "name": "Shahrdari Mahshahr",
+        "name_my": null
+    },
+    {
+        "name": "Niroye Zamini",
+        "name_my": null
+    },
+    {
+        "name": "Shohada Babolsar",
+        "name_my": null
+    },
+    {
+        "name": "FC Metalist Kharkiv",
+        "name_my": "မီတာလစ်ကဟာကစ်"
+    },
+    {
+        "name": "FSV Luckenwalde",
+        "name_my": "လူကန်၀ယ်ဒီ"
+    },
+    {
+        "name": "Tennis Borussia Berlin",
+        "name_my": "တန်နစ်ဘိုရူဆီယာဘာလင်"
+    },
+    {
+        "name": "SV Lichtenberg 47",
+        "name_my": "SVလစ်တန်ဘတ်47"
+    },
+    {
+        "name": "FC Viktoria Berlin",
+        "name_my": "FCဗစ်တိုးရီးယားဘာလင်"
+    },
+    {
+        "name": "VSG Altglienicke",
+        "name_my": "အက်ဂလီနစ်ကီ"
+    },
+    {
+        "name": "Greifswalder FC",
+        "name_my": "ဂရစ်ဖ်ဆဝယ်လ်ဒါ"
+    },
+    {
+        "name": "Rot-Weiss Erfurt",
+        "name_my": "ရော့၀စ်အာဖတ်"
+    },
+    {
+        "name": "SV Babelsberg 03",
+        "name_my": "ဘာဘယ်လ်စ်ဘတ်"
+    },
+    {
+        "name": "Energie Cottbus",
+        "name_my": "အင်နာဂျီ ကော့စ်ဘတ်"
+    },
+    {
+        "name": "Fraijanes FC",
+        "name_my": "ဖရီဂျာနက်FC"
+    },
+    {
+        "name": "FC Heredia",
+        "name_my": "FCဟီရီဒီယာ"
+    },
+    {
+        "name": "Universidad de San Carlos",
+        "name_my": "ယူနီဗာစီဒတ်ဒီဆန်ကာလို့စ်"
+    },
+    {
+        "name": "Deportivo Mictlan",
+        "name_my": "ဒီပို့တီဗိုမစ်လန်"
+    },
+    {
+        "name": "CS Deportivo Sacachispas",
+        "name_my": "CSဒီပို့တီဗိုဆာကာချီဆပက်"
+    },
+    {
+        "name": "Solola FC",
+        "name_my": "ဆိုလိုလာFC"
+    },
+    {
+        "name": "Suchitepequez",
+        "name_my": "ဆူချီတီပီကွက်"
+    },
+    {
+        "name": "Santa Lucia Cotzumalguapa",
+        "name_my": "ဆန်တာလူစီယာ"
+    },
+    {
+        "name": "Juventud Copalera",
+        "name_my": "ဂျူဗင်တပ်ကိုပါလီရာ"
+    },
+    {
+        "name": "Deportivo Iztapa",
+        "name_my": "ဒီပို့အစ်တာပါ"
+    },
+    {
+        "name": "Boca Juniors U20",
+        "name_my": "ဘိုကာဂျူနီအော်U20"
+    },
+    {
+        "name": "AZ Alkmaar U20",
+        "name_my": "AZအယ်ကမာU20"
+    },
+    {
+        "name": "Sao Paulo",
+        "name_my": "ဆော်ပေါ်လို"
+    },
+    {
+        "name": "Palmeiras",
+        "name_my": "ပါးလ်မီးရပ်"
+    },
+    {
+        "name": "America Mineiro",
+        "name_my": "အမေရိကာ မင်နဲရိုး"
+    },
+    {
+        "name": "Corinthians",
+        "name_my": "ကိုရင်သီယန်"
+    },
+    {
+        "name": "Flamengo",
+        "name_my": "ဖလာမင်ဂို"
+    },
+    {
+        "name": "Atletico Paranaense",
+        "name_my": "ပါရာနန်ဆီ"
+    },
+    {
+        "name": "Gremio Porto Alegre",
+        "name_my": "ဂရီမီအိုပေါ်တိုအလီဂရီ"
+    },
+    {
+        "name": "Bahia",
+        "name_my": "ဘာဟီယာ"
+    },
+    {
+        "name": "Fatsa Belediyespor",
+        "name_my": "ဖက်ဆာဘီလီဒီယီစပေါ်"
+    },
+    {
+        "name": "Buyukcekmece Tepecikspor",
+        "name_my": "တီပီစစ်စပေါ်"
+    },
+    {
+        "name": "Karakopru Belediyespor",
+        "name_my": "ကာရာကော့ရူဘီလီဒီယီစပေါ်"
+    },
+    {
+        "name": "Kusadasispor",
+        "name_my": "ကူဆာဒါဆီစပေါ်"
+    },
+    {
+        "name": "Malatya Arguvan SK",
+        "name_my": "မာလက်ယာအာဂူဗန်SK"
+    },
+    {
+        "name": "Mardin 1969 Spor",
+        "name_my": "မာဒင်1969"
+    },
+    {
+        "name": "Sebat Genclikspor",
+        "name_my": "ဆီဘက်ဂျန်ကလစ်စပေါ်"
+    },
+    {
+        "name": "Cankaya FK",
+        "name_my": "ကန်ကာယာFK"
+    },
+    {
+        "name": "1922 Konyaspor",
+        "name_my": "1922ကွန်ယာစပေါ်"
+    },
+    {
+        "name": "Akhisar Belediyespor",
+        "name_my": "ဘီလီဒီယီစပေါ်"
+    },
+    {
+        "name": "FC Metalist Kharkiv",
+        "name_my": "မီတာလစ်ကဟာကစ်"
+    },
+    {
+        "name": "Bracknell Town",
+        "name_my": "ဘရန့်နဲလ်တောင်း"
+    },
+    {
+        "name": "Yate Town",
+        "name_my": "ယိတ်တောင်း"
+    },
+    {
+        "name": "Hendon",
+        "name_my": "ဟန်ဒန်"
+    },
+    {
+        "name": "Merthyr Town",
+        "name_my": "မာသာတောင်း"
+    },
+    {
+        "name": "Beaconsfield Town",
+        "name_my": "ဘေကွန်စ်ဖီးလ်ဒ်တောင်း"
+    },
+    {
+        "name": "Metropolitan Police",
+        "name_my": "မက်ထရိုပိုလီတန် ပုလိစ်"
+    },
+    {
+        "name": "Metropolitan Police FC",
+        "name_my": "မက်ရိုပိုလီတန်"
+    },
+    {
+        "name": "Plymouth Parkway",
+        "name_my": "ပလိုင်းမောက် ပါ့သ်ဝေး"
+    },
+    {
+        "name": "Dorchester Town",
+        "name_my": "ဒေါ်ချက်စတာတောင်း"
+    },
+    {
+        "name": "SESA Football Academy",
+        "name_my": "SESAဖွတ်ဘောအကာဒီမီ"
+    },
+    {
+        "name": "Guardian Angel SC",
+        "name_my": "ဂူယာဒန်အန်ဂယ်SC"
+    },
+    {
+        "name": "Cortalim Villagers",
+        "name_my": null
+    },
+    {
+        "name": "Geno FC",
+        "name_my": null
+    },
+    {
+        "name": "SV Grodig",
+        "name_my": "SVဂရိုဒစ်"
+    },
+    {
+        "name": "UFC Siezenheim",
+        "name_my": "UFCဆီဇန်ဟိမ်း"
+    },
+    {
+        "name": "Varbergs GIF",
+        "name_my": "ဗာဘတ်GIF"
+    },
+    {
+        "name": "Landvetter IS",
+        "name_my": "လန့်ဗက်တာIS"
+    },
+    {
+        "name": "IK Zenith",
+        "name_my": "IKဇီနစ်"
+    },
+    {
+        "name": "Stenungsunds IF",
+        "name_my": "စတီနန်ဆန်းIF"
+    },
+    {
+        "name": "Grebbestads IF",
+        "name_my": "ဂရတ်ဘက်တက်IF"
+    },
+    {
+        "name": "Nordvarmland FF",
+        "name_my": "နော့ဗမ်းလန်းFF"
+    },
+    {
+        "name": "BK Astrio",
+        "name_my": "BKအက်ထရီအို"
+    },
+    {
+        "name": "Laholms FK",
+        "name_my": "လာဟိုလ်မက်FK"
+    },
+    {
+        "name": "Hassleholms IF",
+        "name_my": "ဟက်လီဟိုလ်မက်IF"
+    },
+    {
+        "name": "Osterlen FF",
+        "name_my": "အိုစတာလန်းFF"
+    },
+    {
+        "name": "Hapoel Lod",
+        "name_my": "ဟာပိုးလော့"
+    },
+    {
+        "name": "Hapoel Kfar Shalem",
+        "name_my": "ဟာပိုးကဖာရှာလမ်"
+    },
+    {
+        "name": "Agudat Sport Ashdod FC",
+        "name_my": "အဂူဒတ်စပေါ့အက်ဒေါ့FC"
+    },
+    {
+        "name": "Maccabi Yavne",
+        "name_my": "မက်ကဘီယက်နီ"
+    },
+    {
+        "name": "MS Tzeirei Kafr Kanna",
+        "name_my": "MSတီဇီရီကာဖာကန်နာ"
+    },
+    {
+        "name": "Hapoel Bnei Zalafa FC",
+        "name_my": "ဟာပိုးဘနီဇလာဖာFC"
+    },
+    {
+        "name": "Hapoel Bueine FC",
+        "name_my": "ဟာပိုးဘူအီနီFC"
+    },
+    {
+        "name": "Moadon Sport Tira",
+        "name_my": "မိုယာဒွန်စပေါ့တီရာ"
+    },
+    {
+        "name": "Hapoel Ironi Baqa Al-Gharbiyye",
+        "name_my": "ဟာပိုးအိုင်းရိုနီအယ်ဂဟာဘိုင်ယီ"
+    },
+    {
+        "name": "Hapoel Kafr Kanna",
+        "name_my": "ဟာပိုးကာဖာကန်နာ"
+    },
+    {
+        "name": "Henan Jianye (w)",
+        "name_my": "ဟီနန်ဂျီအန်ယီW"
+    },
+    {
+        "name": "Shaanxi Changan Athletic (w)",
+        "name_my": "ရှာအန်ဇီချန်းဂန်အသလက်တစ်W"
+    },
+    {
+        "name": "Shanghai RCB (w)",
+        "name_my": "ရှန်းဟီRCB W"
+    },
+    {
+        "name": "Yongchuan Chashan Zhuhai (W)",
+        "name_my": "ယန်းချူအန်ချက်ဟန်ဇဟူဟီW"
+    },
+    {
+        "name": "Shandong Sports Lottery (w)",
+        "name_my": null
+    },
+    {
+        "name": "Jiangsu Wuxi (W)",
+        "name_my": null
+    },
+    {
+        "name": "Beijing Club (w)",
+        "name_my": null
+    },
+    {
+        "name": "Wuhan Chegu Jiangda (W)",
+        "name_my": null
+    },
+    {
+        "name": "Changchun Dazhong Zhuoyue (w)",
+        "name_my": null
+    },
+    {
+        "name": "Brisbane City FC (w)",
+        "name_my": "ဘရစ်ဘာနီစီးတီးFC W"
+    },
+    {
+        "name": "Virginia United (w)",
+        "name_my": "ဗာဂျီနီယာယူနိုက်တက်W"
+    },
+    {
+        "name": "SWQ Thunder (w)",
+        "name_my": "SWQသန်ဒါW"
+    },
+    {
+        "name": "Broadbeach United (w)",
+        "name_my": "ဘရော့ဘတ်ယူနိုက်တက်W"
+    },
+    {
+        "name": "FC Metalist Kharkiv",
+        "name_my": "မီတာလစ်ကဟာကစ်"
+    },
+    {
+        "name": "ASO Chlef",
+        "name_my": "ချလက်ဖ်"
+    },
+    {
+        "name": "MC El Bayadh",
+        "name_my": "MCအယ်ဘာယက်"
+    },
+    {
+        "name": "CR Belouizdad",
+        "name_my": "ဘူလောအစ်ဇတ်"
+    },
+    {
+        "name": "CS Constantine",
+        "name_my": "ကွန်စတန်တင်းန်"
+    },
+    {
+        "name": "MC Alger",
+        "name_my": "MC အယ်ဂါ"
+    },
+    {
+        "name": "Paradou AC",
+        "name_my": "ပါရာဒေါ"
+    },
+    {
+        "name": "NC Magra",
+        "name_my": "မာဂရာ"
+    },
+    {
+        "name": "USM Alger",
+        "name_my": "USM အယ်ဂါ"
+    },
+    {
+        "name": "RC Arbaa",
+        "name_my": "RCအာဘာ"
+    },
+    {
+        "name": "FC Metalist Kharkiv",
+        "name_my": "မီတာလစ်ကဟာကစ်"
+    },
+    {
+        "name": "Chapelton Maroons FC",
+        "name_my": "ချာပယ်တန်မာရွန်းစ်FC"
+    },
+    {
+        "name": "Portmore United",
+        "name_my": "ပေါ့တ်မိုးရ်"
+    },
+    {
+        "name": "Arnett Gardens",
+        "name_my": "အားနက်ဂါးဒင်း"
+    },
+    {
+        "name": "Molynes United FC",
+        "name_my": "မိုလီနက်ယူနိုက်တက်FC"
+    },
+    {
+        "name": "Mount Pleasant Academy",
+        "name_my": "မောင့်ပလဲဆန့် အကယ်ဒမီ"
+    },
+    {
+        "name": "Waterhouse FC",
+        "name_my": "၀ါးတားဟူဆီFC"
+    },
+    {
+        "name": "Vere United FC",
+        "name_my": "ဗီရီယူနိုက်တက်FC"
+    },
+    {
+        "name": "Montego Bay United",
+        "name_my": "မွန်တီဂိုဘေး ယူနိုက်တက်"
+    },
+    {
+        "name": "Humble Lions",
+        "name_my": "ဟမ်ဘဲလ်လိုင်းယွန်း"
+    },
+    {
+        "name": "Iceland",
+        "name_my": "အိုက်စလန်"
+    },
+    {
+        "name": "Poland",
+        "name_my": "ပိုလန်"
+    },
+    {
+        "name": "Turkey",
+        "name_my": "တူရကီ"
+    },
+    {
+        "name": "Scotland",
+        "name_my": "စကော့တလန်"
+    },
+    {
+        "name": "Albania",
+        "name_my": "အယ်လ်ဘေးနီးယား"
+    },
+    {
+        "name": "Italy",
+        "name_my": "အီတလီယာနို"
+    },
+    {
+        "name": "Czech Republic",
+        "name_my": "ချက်"
+    },
+    {
+        "name": "Cyprus",
+        "name_my": "ဆိုက်ပရပ်"
+    },
+    {
+        "name": "Bulgaria",
+        "name_my": "ဘူလ်ဂေးရီးယား"
+    },
+    {
+        "name": "Croatia",
+        "name_my": "ခရိုအေးရှား"
+    },
+    {
+        "name": "Deportivo Moron (R)",
+        "name_my": null
+    },
+    {
+        "name": "Chacarita Juniors (R)",
+        "name_my": null
+    }
+]
