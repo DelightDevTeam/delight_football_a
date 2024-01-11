@@ -28,13 +28,15 @@ class FixtureSeeder extends Seeder
             foreach ($home_teams as $index => $home_team) {
                 $away_team = data_get($away_teams, $index);
 
+                $date_time = rand(0, 1) ? now()->addHours(rand(0, 48)) : now()->subHours(rand(0, 48));
+
                 if ($away_team) {
                     Fixture::create([
                         'league_id' => $league->id,
                         'home_team_id' => $home_team->id,
                         'away_team_id' => $away_team->id,
-                        'raw_date_time' => now(),
-                        'date_time' => now()
+                        'raw_date_time' => $date_time,
+                        'date_time' => $date_time
                     ]);
                 }
             }

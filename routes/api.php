@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\BetController;
+use App\Http\Controllers\Api\V1\FixtureController;
 use App\Http\Controllers\Api\V1\LoginController;
 use App\Http\Controllers\Api\V1\MarketController;
 use App\Http\Controllers\Api\V1\ParlayController;
@@ -45,5 +46,7 @@ Route::group(["prefix" => "v1"], function () {
 
         Route::post("deposit-requests", [TransactionRequestController::class, "storeDepositRequest"]);
         Route::post("withdraw-requests", [TransactionRequestController::class, "storeWithdrawRequest"]);
+
+        Route::get("fixtures", FixtureController::class);
     });
 });
