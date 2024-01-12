@@ -32,7 +32,6 @@ class BetController extends Controller
         $bet_type = $bet["type"];
         $selected_side = $bet["selected_side"];
 
-
         $single = Single::create([
             ...[
                 "amount" => $request->validated("amount"),

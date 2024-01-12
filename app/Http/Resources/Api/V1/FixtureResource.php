@@ -21,7 +21,7 @@ class FixtureResource extends JsonResource
             "ft_home_goal" => $this->ft_home_goal,
             "ft_away_goal" => $this->ft_away_goal,
             "ft_status" => $this->ft_status,
-            "date_time" => $this->date_time->format("Y-m-d g:i A"),
+            "date_time" => $this->date_time->format("Y-m-d g:i A"), // TODO: convert to mm time
         ];
     }
 }
