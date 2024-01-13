@@ -19,11 +19,8 @@ class MarketResource extends JsonResource
             "upper_team_id" => $this->upper_team_id,
             "lower_team_id" => $this->lower_team_id,
             "handicap_team_id" => $this->handicap_team_id,
-            "ab" => $this->ab,
-            "ab_odd" => $this->ab_odd,
-            "ou" => $this->ou,
-            "ou_over" => $this->ou_over,
-            "ou_under" => $this->ou_under,
+            "ab" => $this->ab, // TODO: + -
+            "ou" => $this->ou, // TODO: + -
         ];
     }
 }

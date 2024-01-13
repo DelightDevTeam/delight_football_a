@@ -18,7 +18,7 @@ class FixtureResource extends JsonResource
             "id" => $this->id,
             "home_team" => new TeamResource($this->homeTeam),
             "away_team" => new TeamResource($this->awayTeam),
-            "date_time" => $this->date_time->format("Y-m-d g:i A"),
+            "date_time" => $this->date_time->format("Y-m-d g:i A"), // TODO: convert to mm time
             "market" => new MarketResource($this->latestMarket)
         ];
     }
