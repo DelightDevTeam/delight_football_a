@@ -92,6 +92,90 @@
          @endforeach
         </td>
        </tr>
+        <tr>
+          <th>Address</th>
+          <td>{!! $user_detail->address !!}</td>
+        </tr>
+        <tr>
+          <th>Balance</th>
+          <td>{!! $user_detail->balance !!}</td>
+        </tr>
+        <tr>
+          <th>Status</th>
+          {{-- if status == 0 activie, 1 ban using span badge --}}
+          <td>
+            @if ($user_detail->status == 0)
+            <span class="badge badge-pill badge-success">Active</span>
+            @else
+            <span class="badge badge-pill badge-danger">Ban</span>
+            @endif
+          </td>
+
+        </tr>
+        <tr>
+          <th>max_for_mix_bet</th>
+          <td>{!! $user_detail->max_for_mix_bet !!}</td>
+        </tr>
+        <tr>
+          <th>max_for_single_bet</th>
+          <td>{!! $user_detail->max_for_single_bet !!}</td>
+        </tr>
+        <tr>
+          <th>commission</th>
+          <td>{!! $user_detail->commission !!} %</td>
+        </tr>
+        <tr>
+          <th>high_commission</th>
+          <td>{!! $user_detail->high_commission !!} %</td>
+        </tr>
+        <tr>
+          <th>two_d_commission</th>
+          <td>{!! $user_detail->two_d_commission !!} %</td>
+        </tr>
+        <tr>
+          <th>three_d_commission</th>
+          <td>{!! $user_detail->three_d_commission !!} %</td>
+        </tr>
+        <tr>
+          <th>match_count_two_commission</th>
+          <td>{!! $user_detail->m_c_two_commission !!} %</td>
+        </tr>
+        <tr>
+          <th>match_count_three_commission</th>
+          <td>{!! $user_detail->m_c_three_commission !!} %</td>
+        </tr>
+        <tr>
+          <th>match_count_four_commission</th>
+          <td>{!! $user_detail->m_c_four_commission !!} %</td>
+        </tr>
+        <tr>
+          <th>match_count_five_commission</th>
+          <td>{!! $user_detail->m_c_five_commission !!} %</td>
+        </tr>
+        <tr>
+          <th>match_count_six_commission</th>
+          <td>{!! $user_detail->m_c_six_commission !!} %</td>
+        </tr>
+        <tr>
+          <th>match_count_seven_commission</th>
+          <td>{!! $user_detail->m_c_seven_commission !!} %</td>
+        </tr>
+        <tr>
+          <th>match_count_eight_commission</th>
+          <td>{!! $user_detail->m_c_eight_commission !!} %</td>
+        </tr>
+        <tr>
+          <th>match_count_nine_commission</th>
+          <td>{!! $user_detail->m_c_nine_commission !!} %</td>
+        </tr>
+        <tr>
+          <th>match_count_ten_commission</th>
+          <td>{!! $user_detail->m_c_ten_commission !!} %</td>
+        </tr>
+        <tr>
+          <th>match_count_eleven_commission</th>
+          <td>{!! $user_detail->m_c_eleven_commission !!} %</td>
+        </tr>
 
        <tr>
         <th>Create Date</th>

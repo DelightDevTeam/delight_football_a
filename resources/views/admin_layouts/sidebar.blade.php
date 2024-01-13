@@ -79,7 +79,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link text-white " href="{{ url('/real-live-master-create')}}">
+                  <a class="nav-link text-white " href="{{ url('/admin/real-live-master-create')}}">
                     <span class="sidenav-mini-icon"> <i class="fas fa-users"></i> </span>
                     <span class="sidenav-normal  ms-2  ps-1"> Master Create </span>
                   </a>
@@ -116,7 +116,7 @@
         <i class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">manage_accounts</i>
         <span class="nav-link-text ms-2 ps-1">Master Control</span>
       </a>
-      <!-- <div class="collapse show" id="pagesExamples">
+       <div class="collapse show" id="pagesExamples">
           <ul class="nav">
             <li class="nav-item ">
               <div class="collapse " id="masterControl">
@@ -158,7 +158,7 @@
               </div>
             </li>
           </ul>
-        </div> -->
+        </div>
     </li>
     @elseif($role->title == "Agent")
     <li class="nav-item">

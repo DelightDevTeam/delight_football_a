@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->string('username')->nullable();
             $table->string('name');
             $table->string('phone')->nullable()->unique();
             $table->string('email')->nullable()->unique();
@@ -25,6 +26,22 @@ return new class extends Migration
             $table->integer('balance')->default(500000);
              $table->integer('status')->default(0);
             $table->unsignedBigInteger('agent_id')->default(1);
+            $table->decimal('max_for_mix_bet')->default('0');
+            $table->decimal('max_for_single_bet')->default('0');
+             $table->decimal('commission')->default('0');
+            $table->decimal('high_commission')->default('0');
+            $table->decimal('two_d_commission')->default('0');
+            $table->decimal('three_d_commission')->default('0');
+            $table->decimal('m_c_two_commission')->default('0');
+            $table->decimal('m_c_three_commission')->default('0');
+            $table->decimal('m_c_four_commission')->default('0');
+            $table->decimal('m_c_five_commission')->default('0');
+            $table->decimal('m_c_six_commission')->default('0');
+            $table->decimal('m_c_seven_commission')->default('0');
+            $table->decimal('m_c_eight_commission')->default('0');
+            $table->decimal('m_c_nine_commission')->default('0');
+            $table->decimal('m_c_ten_commission')->default('0');
+            $table->decimal('m_c_eleven_commission')->default('0');
             $table->rememberToken();
             $table->timestamps();
             $table->foreign('agent_id')->references('id')->on('users')->onDelete('cascade');

@@ -22,8 +22,7 @@ class User extends Authenticatable
      */
      protected $fillable = [
         'name',
-        'operatorcode',
-        'signature',
+        'username',
         'profile',
         'email',
         'password',
@@ -37,7 +36,25 @@ class User extends Authenticatable
         'wavepay_no',
         'ayapay_no',
         'balance',
+        'status',
         'agent_id',
+        'max_for_mix_bet',
+        'max_for_single_bet',
+        'commission',
+        'high_commission',
+        'two_d_commission',
+        'three_d_commission',
+        'm_c_two_commission',
+        'm_c_three_commission',
+        'm_c_four_commission',
+        'm_c_five_commission',
+        'm_c_six_commission',
+        'm_c_seven_commission',
+        'm_c_eight_commission',
+        'm_c_nine_commission',
+        'm_c_ten_commission',
+        'm_c_eleven_commission',
+        
 
     ];
     protected $dates = ['created_at', 'updated_at'];

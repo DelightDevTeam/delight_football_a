@@ -77,8 +77,12 @@
         <td>{!! $user_detail->id !!}</td>
        </tr>
        <tr>
-        <th>User Name</th>
+        <th> Name</th>
         <td>{!! $user_detail->name !!}</td>
+       </tr>
+       <tr>
+        <th>User Name</th>
+        <td>{!! $user_detail->username !!}</td>
        </tr>
        <tr>
         <th>Phone</th>

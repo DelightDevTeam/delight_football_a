@@ -36,7 +36,7 @@ class AgentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|min:3|unique:users,name',
+            'name' => 'required|min:3',
             'phone' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'unique:users,phone'],
             'password' => 'required|min:6|confirmed',
         ]);
@@ -44,6 +44,7 @@ class AgentController extends Controller
 
         $user = User::create([
             'name'=> $request->name,
+            'username'=> $request->username,
             'phone'=> $request->phone,
             'password'=> Hash::make( $request->password ),
             //'role' => "Agent",
@@ -155,33 +156,6 @@ public function AgentUsertransferStore(Request $request)
     $master = User::find($request->to_user_id);
     $master->balance -= $request->cash_out; // Add cash_out to the balance of the to_user
     $master->save();
-
-        // $request->validate([
-        //     'name' => 'required|min:3',
-        //     'phone' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/'],
-        //     'cash_out' => 'required|numeric',
-        // ]);
-        // //dd($request->all());
-        // // subtract from cash_in to cash_out
-        // $cash_balance_data = $request->cash_balance;
-        // $cash_out_data = $request->cash_out;
-        // $cash_out_money = $cash_balance_data - $cash_out_data;
-        // $cash_out_master = new TransferLog();
-        // $cash_out_master->name = $request->name;
-        // $cash_out_master->phone = $request->phone;
-        // $cash_out_master->cash_out = $request->cash_out;
-        // $cash_out_master->cash_balance = $cash_out_money;
-        // $cash_out_master->from_user_id = $request->from_user_id;
-        // $cash_out_master->to_user_id = $request->to_user_id;
-        // $cash_out_master->note = $request->note;
-        // $cash_out_master->save();
-        // // user balance update
-        // $admin = User::find($request->from_user_id);
-        // $admin->balance += $request->cash_out;
-        // $admin->save();
-        // $master = User::find($request->to_user_id);
-        // $master->balance -= $request->cash_out;
-        // $master->save();
         session()->flash('success', 'Money transfer request submitted successfully!');
         // Redirect back with a success message
         return redirect()->back()->with('success', 'Money fill request submitted successfully!');
@@ -204,13 +178,13 @@ public function AgentUsertransferStore(Request $request)
     public function update(Request $request, string $id)
     {
         $request->validate([
-    'name' => 'required|min:3|unique:users,name,'.$id,
     'phone' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'unique:users,phone,'.$id],
     'password' => 'nullable|min:6|confirmed',
 ]);
 
         $user = User::find($id);
         $user->name = $request->name;
+        $user->username = $request->username;
         $user->phone = $request->phone;
 
         if($request->password){

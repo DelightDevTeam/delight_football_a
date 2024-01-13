@@ -34,7 +34,8 @@ class AdminCreateMasterController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+    {   
+       // dd($request->all());
         $request->validate([
             'name' => 'required|min:3|unique:users,name',
             'phone' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'unique:users,phone'],
@@ -44,10 +45,28 @@ class AdminCreateMasterController extends Controller
 
         $user = User::create([
             'name'=> $request->name,
+            'username'=> $request->username,
             'phone'=> $request->phone,
             'password'=> Hash::make( $request->password ),
+            'status'=> '0',
             //'role' => "Agent",
             'agent_id' => Auth::user()->id,
+            'max_for_mix_bet' => $request->max_for_mix_bet,
+            'max_for_single_bet' => $request->max_for_single_bet,
+            'commission' => $request->commission,
+            'high_commission' => $request->high_commission,
+            'two_d_commission' => $request->two_d_commission,
+            'three_d_commission' => $request->three_d_commission,
+            'm_c_two_commission' => $request->m_c_two_commission,
+            'm_c_three_commission' => $request->m_c_three_commission,
+            'm_c_four_commission' => $request->m_c_four_commission,
+            'm_c_five_commission' => $request->m_c_five_commission,
+            'm_c_six_commission' => $request->m_c_six_commission,
+            'm_c_seven_commission' => $request->m_c_seven_commission,
+            'm_c_eight_commission' => $request->m_c_eight_commission,
+            'm_c_nine_commission' => $request->m_c_nine_commission,
+            'm_c_ten_commission' => $request->m_c_ten_commission,
+            'm_c_eleven_commission' => $request->m_c_eleven_commission,
         ]);
         //$user->roles()->sync('3');
         $agentRole = Role::where('title', 'Master')->first();
@@ -182,6 +201,7 @@ public function MastertransferStore(Request $request)
 
         $user = User::find($id);
         $user->name = $request->name;
+        $user->username = $request->username;
         $user->phone = $request->phone;
 
         if($request->password){
@@ -191,8 +211,24 @@ public function MastertransferStore(Request $request)
         //$user->roles()->sync('3');
         $agentRole = Role::where('title', 'Master')->first();
         $user->roles()->sync($agentRole->id);
+        $user->max_for_mix_bet = $request->max_for_mix_bet;
+        $user->max_for_single_bet = $request->max_for_single_bet;
+        $user->commission = $request->commission;
+        $user->high_commission = $request->high_commission;
+        $user->two_d_commission = $request->two_d_commission;
+        $user->three_d_commission = $request->three_d_commission;
+        $user->m_c_two_commission = $request->m_c_two_commission;
+        $user->m_c_three_commission = $request->m_c_three_commission;
+        $user->m_c_four_commission = $request->m_c_four_commission;
+        $user->m_c_five_commission = $request->m_c_five_commission;
+        $user->m_c_six_commission = $request->m_c_six_commission;
+        $user->m_c_seven_commission = $request->m_c_seven_commission;
+        $user->m_c_eight_commission = $request->m_c_eight_commission;
+        $user->m_c_nine_commission = $request->m_c_nine_commission;
+        $user->m_c_ten_commission = $request->m_c_ten_commission;
+        $user->m_c_eleven_commission = $request->m_c_eleven_commission;
         $user->save();
-        return redirect(route('admin.agent-list'))->with('success','Master has been updated successfully.');
+        return redirect(route('admin.real-live-master-list'))->with('success','Master has been updated successfully.');
     }
 
     /**

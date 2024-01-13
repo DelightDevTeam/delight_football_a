@@ -50,7 +50,7 @@
       <tr>
         <td>{{ $loop->index + 1 }}</td>
         <td>
-          <span class="d-block">{{ $user->name }}</span>
+          <span class="d-block">{{ $user->username }}</span>
           @foreach ($user->roles as $role)
           <span class="badge badge-pill badge-primary">{{ $role->title }}</span>
           @endforeach
@@ -75,10 +75,18 @@
               @method('PUT')
           </form>
 
-        <a class="me-1" href="{{ route('admin.real-live-master-edit', $user->id) }}" data-bs-toggle="tooltip"
+        {{-- <a class="me-1" href="{{ route('admin.real-live-master-edit', $user->id) }}" data-bs-toggle="tooltip"
          data-bs-original-title="Edit User">
-         <i class="fas fa-pen-to-square text-info" style="font-size: 20px;"></i>
+         {{-- <i class="fas fa-pen-to-square text-info" style="font-size: 20px;"></i> 
+          Edit
+        </a> &nbsp; &nbsp; --}}
+
+        <a class="me-1" href="{{ route('admin.real-live-master-edit', $user->id) }}" data-bs-toggle="tooltip"
+         data-bs-original-title="Master Edit">
+         <i class="fas fa-eye text-info" style="font-size: 20px;"></i>
         </a>
+
+
         <a class="me-1" href="{{ route('admin.real-live-master-show', $user->id) }}" data-bs-toggle="tooltip"
          data-bs-original-title="Preview User Detail">
          <i class="fas fa-eye text-warning" style="font-size: 20px;"></i>

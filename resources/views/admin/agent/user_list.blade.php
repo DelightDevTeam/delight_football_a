@@ -50,7 +50,7 @@
       <tr>
        <td>{{ $loop->index + 1 }}</td>
         <td>
-          <span class="d-block">{{ $user->name }}</span>
+          <span class="d-block">{{ $user->username }}</span>
           @foreach ($user->roles as $role)
           <span class="badge badge-pill badge-primary">{{ $role->title }}</span>
           @endforeach
@@ -76,7 +76,7 @@
           </form>
         <a href="{{ route('admin.agent-user-edit', $user->id) }}" data-bs-toggle="tooltip"
          data-bs-original-title="Edit User">
-         <i class="fas fa-pen-to-square text-info" style="font-size: 20px;"></i>
+         <i class="fas fa-eye text-info" style="font-size: 20px;"></i>
         </a>
         <a href="{{ route('admin.agent-user-show', $user->id) }}" data-bs-toggle="tooltip"
          data-bs-original-title="Preview User Detail">

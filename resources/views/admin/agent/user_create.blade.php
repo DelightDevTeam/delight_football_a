@@ -85,11 +85,21 @@
   <div class="row">
     <div class="col-md-6">
       <div class="input-group input-group-outline my-3">
-        <label class="form-label">User Real Name</label>
-        <input type="text" class="form-control" name="name">
+        <label class="form-label">Name</label>
+        <input type="text" class="form-control" name="name" readonly value="{{ Auth::user()->name }}">
 
       </div>
       @error('name')
+        <span class="d-block text-danger">*{{ $message }}</span>
+        @enderror
+    </div>
+    <div class="col-md-6">
+      <div class="input-group input-group-outline my-3">
+        <label class="form-label">User Real Name</label>
+        <input type="text" class="form-control" name="username">
+
+      </div>
+      @error('username')
         <span class="d-block text-danger">*{{ $message }}</span>
         @enderror
     </div>

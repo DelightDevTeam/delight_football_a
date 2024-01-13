@@ -50,7 +50,7 @@
       <tr>
        <td>{{ $loop->index + 1 }}</td>
         <td>
-          <span class="d-block">{{ $user->name }}</span>
+          <span class="d-block">{{ $user->username }}</span>
           @foreach ($user->roles as $role)
           <span class="badge badge-pill badge-primary">{{ $role->title }}</span>
           @endforeach
@@ -75,17 +75,17 @@
             @method('PUT')
         </form>
         <a href="{{ route('admin.agent-edit', $user->id) }}" data-bs-toggle="tooltip"
-         data-bs-original-title="Edit User">
-         <i class="fas fa-pen-to-square text-info" style="font-size:20px;"></i>
+         data-bs-original-title="Edit Agent">
+         <i class="fas fa-eye text-info" style="font-size:20px;"></i>
         </a>
         <a href="{{ route('admin.agent-show', $user->id) }}" data-bs-toggle="tooltip"
-         data-bs-original-title="Preview User Detail">
+         data-bs-original-title="Preview Agent Detail">
          <i class="fas fa-eye text-warning" style="font-size:20px;"></i>
         </a>
         <form class="d-inline" action="{{ route('admin.agent-delete', $user->id) }}" method="POST">
          @csrf
          @method('DELETE')
-         <button type="submit" class="transparent-btn" data-bs-toggle="tooltip" data-bs-original-title="Delete User">
+         <button type="submit" class="transparent-btn" data-bs-toggle="tooltip" data-bs-original-title="Delete Agent">
           <i class="fas fa-trash text-danger" style="font-size:20px;"></i>
          </button>
 

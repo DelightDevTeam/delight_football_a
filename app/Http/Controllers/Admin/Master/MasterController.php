@@ -38,25 +38,44 @@ class MasterController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+    {   
+       // dd($request->all());
         $request->validate([
-    'name' => 'required|min:3|unique:users,name',
-    'phone' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'unique:users,phone'],
-    'password' => 'required|min:6|confirmed',
-]);
-        $this->authorize('createAgent', User::class);
+            'name' => 'required|min:3',
+            'phone' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'unique:users,phone'],
+            'password' => 'required|min:6|confirmed',
+        ]);
+        $this->authorize('createMaster', User::class);
 
         $user = User::create([
             'name'=> $request->name,
+            'username'=> $request->username,
             'phone'=> $request->phone,
             'password'=> Hash::make( $request->password ),
+            'status'=> '0',
             //'role' => "Agent",
             'agent_id' => Auth::user()->id,
+            'max_for_mix_bet' => $request->max_for_mix_bet,
+            'max_for_single_bet' => $request->max_for_single_bet,
+            'commission' => $request->commission,
+            'high_commission' => $request->high_commission,
+            'two_d_commission' => $request->two_d_commission,
+            'three_d_commission' => $request->three_d_commission,
+            'm_c_two_commission' => $request->m_c_two_commission,
+            'm_c_three_commission' => $request->m_c_three_commission,
+            'm_c_four_commission' => $request->m_c_four_commission,
+            'm_c_five_commission' => $request->m_c_five_commission,
+            'm_c_six_commission' => $request->m_c_six_commission,
+            'm_c_seven_commission' => $request->m_c_seven_commission,
+            'm_c_eight_commission' => $request->m_c_eight_commission,
+            'm_c_nine_commission' => $request->m_c_nine_commission,
+            'm_c_ten_commission' => $request->m_c_ten_commission,
+            'm_c_eleven_commission' => $request->m_c_eleven_commission,
         ]);
         //$user->roles()->sync('3');
         $agentRole = Role::where('title', 'Agent')->first();
         $user->roles()->sync($agentRole->id);
-        return redirect(route('admin.agent-list'))->with('success','Agent has been created successfully.');
+        return redirect(route('admin.agent-list'))->with('success','Master has been created successfully.');
     }
 
     /**
@@ -154,33 +173,7 @@ public function AgenttransferStore(Request $request)
     $master->balance -= $request->cash_out; // Add cash_out to the balance of the to_user
     $master->save();
 
-        // $request->validate([
-        //     'name' => 'required|min:3',
-        //     'phone' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/'],
-        //     'cash_out' => 'required|numeric',
-        // ]);
-        // //dd($request->all());
-        // // subtract from cash_in to cash_out
-        // $cash_balance_data = $request->cash_balance;
-        // $cash_out_data = $request->cash_out;
-        // $cash_out_money = $cash_balance_data - $cash_out_data;
-        // $cash_out_master = new TransferLog();
-        // $cash_out_master->name = $request->name;
-        // $cash_out_master->phone = $request->phone;
-        // $cash_out_master->cash_out = $request->cash_out;
-        // $cash_out_master->cash_balance = $cash_out_money;
-        // $cash_out_master->from_user_id = $request->from_user_id;
-        // $cash_out_master->to_user_id = $request->to_user_id;
-        // $cash_out_master->note = $request->note;
-        // $cash_out_master->save();
-        // // user balance update
-        // $admin = User::find($request->from_user_id);
-        // $admin->balance += $request->cash_out;
-        // $admin->save();
-        // $master = User::find($request->to_user_id);
-        // $master->balance -= $request->cash_out;
-        // $master->save();
-
+        
         // Redirect back with a success message
         session()->flash('success', 'Money transfer request submitted successfully!');
         return redirect()->back()->with('success', 'Money fill request submitted successfully!');
@@ -202,23 +195,62 @@ public function AgenttransferStore(Request $request)
     public function update(Request $request, string $id)
     {
         $request->validate([
-    'name' => 'required|min:3|unique:users,name,'.$id,
     'phone' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'unique:users,phone,'.$id],
     'password' => 'nullable|min:6|confirmed',
 ]);
 
         $user = User::find($id);
         $user->name = $request->name;
+        $user->username = $request->username;
         $user->phone = $request->phone;
 
         if($request->password){
             $user->password = Hash::make( $request->password );
         }
         $user->agent_id = Auth::user()->id;
-        $user->roles()->sync('3');
+        //$user->roles()->sync('3');
+        $agentRole = Role::where('title', 'Agent')->first();
+        $user->roles()->sync($agentRole->id);
+        $user->max_for_mix_bet = $request->max_for_mix_bet;
+        $user->max_for_single_bet = $request->max_for_single_bet;
+        $user->commission = $request->commission;
+        $user->high_commission = $request->high_commission;
+        $user->two_d_commission = $request->two_d_commission;
+        $user->three_d_commission = $request->three_d_commission;
+        $user->m_c_two_commission = $request->m_c_two_commission;
+        $user->m_c_three_commission = $request->m_c_three_commission;
+        $user->m_c_four_commission = $request->m_c_four_commission;
+        $user->m_c_five_commission = $request->m_c_five_commission;
+        $user->m_c_six_commission = $request->m_c_six_commission;
+        $user->m_c_seven_commission = $request->m_c_seven_commission;
+        $user->m_c_eight_commission = $request->m_c_eight_commission;
+        $user->m_c_nine_commission = $request->m_c_nine_commission;
+        $user->m_c_ten_commission = $request->m_c_ten_commission;
+        $user->m_c_eleven_commission = $request->m_c_eleven_commission;
         $user->save();
-        return redirect(route('admin.agent-list'))->with('success','Agent has been updated successfully.');
+        return redirect(route('admin.agent-list'))->with('success','Master has been updated successfully.');
     }
+
+//     public function update(Request $request, string $id)
+//     {
+//         $request->validate([
+//     'name' => 'required|min:3|unique:users,name,'.$id,
+//     'phone' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'unique:users,phone,'.$id],
+//     'password' => 'nullable|min:6|confirmed',
+// ]);
+
+//         $user = User::find($id);
+//         $user->name = $request->name;
+//         $user->phone = $request->phone;
+
+//         if($request->password){
+//             $user->password = Hash::make( $request->password );
+//         }
+//         $user->agent_id = Auth::user()->id;
+//         $user->roles()->sync('3');
+//         $user->save();
+//         return redirect(route('admin.agent-list'))->with('success','Agent has been updated successfully.');
+//     }
 
     /**
      * Remove the specified resource from storage.
