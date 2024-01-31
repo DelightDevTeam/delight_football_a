@@ -15,9 +15,9 @@ return new class extends Migration
         Schema::create('slips', function (Blueprint $table) {
             $table->id();
             $table->uuid("uuid");
-            $table->unsignedInteger("user_id");
+            $table->foreignId("user_id");
             $table->string("bettable_type");
-            $table->unsignedInteger("bettable_id");
+            $table->foreignId("bettable_id");
             $table->decimal("amount");
             $table->decimal("profit")->nullable();
             $table->decimal("payout")->nullable();

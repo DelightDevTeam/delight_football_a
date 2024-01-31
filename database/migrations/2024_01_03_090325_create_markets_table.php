@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('markets', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger("scrapper_id")->nullable();
-            $table->unsignedInteger("league_id");
-            $table->unsignedInteger("fixture_id");
-            $table->unsignedInteger("upper_team_id");
-            $table->unsignedInteger("lower_team_id");
-            $table->unsignedInteger("handicap_team_id");
+            $table->foreignId("league_id");
+            $table->foreignId("fixture_id");
+            $table->foreignId("upper_team_id");
+            $table->foreignId("lower_team_id");
+            $table->foreignId("handicap_team_id");
             $table->json("ab")->nullable();
             $table->float("ab_odd")->nullable();
             $table->json("ou")->nullable();

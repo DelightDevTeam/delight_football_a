@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('transaction_requests', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger("user_id");
+            $table->foreignId("user_id");
             $table->string("transactionable_type");
             $table->unsignedInteger("transactionable_id");
             $table->uuid("uuid");

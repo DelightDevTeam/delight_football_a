@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('league_team', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger("league_id");
-            $table->unsignedInteger("team_id");
+            $table->foreignId("league_id");
+            $table->foreignId("team_id");
             $table->timestamps();
         });
     }

@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('parlays', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger("user_id");
+            $table->foreignId("user_id");
             $table->decimal("amount");
             $table->decimal("possible_payout")->nullable();
             $table->decimal("profit")->nullable();

@@ -15,9 +15,9 @@ return new class extends Migration
         Schema::create('fixtures', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('scraper_id')->nullable();
-            $table->unsignedInteger('league_id');
-            $table->unsignedInteger('home_team_id');
-            $table->unsignedInteger('away_team_id');
+            $table->foreignId('league_id');
+            $table->foreignId('home_team_id');
+            $table->foreignId('away_team_id');
             $table->string('raw_date_time')->nullable();
             $table->dateTime('date_time');
             $table->tinyInteger("ft_home_goal")->default(0);
