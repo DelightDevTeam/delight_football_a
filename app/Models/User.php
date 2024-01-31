@@ -10,17 +10,19 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Bavix\Wallet\Interfaces\Wallet;
+use Bavix\Wallet\Traits\HasWalletFloat;
 
-class User extends Authenticatable
+class User extends Authenticatable implements Wallet
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasWalletFloat;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-     protected $fillable = [
+    protected $fillable = [
         'name',
         'username',
         'profile',
@@ -54,7 +56,7 @@ class User extends Authenticatable
         'm_c_nine_commission',
         'm_c_ten_commission',
         'm_c_eleven_commission',
-        
+
 
     ];
     protected $dates = ['created_at', 'updated_at'];
@@ -102,7 +104,6 @@ class User extends Authenticatable
     public function roles()
     {
         return $this->belongsToMany(Role::class);
-
     }
 
     public function permissions()
@@ -119,7 +120,8 @@ class User extends Authenticatable
         return $this->roles->flatMap->permissions->pluck('title')->contains($permission);
     }
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
