@@ -93,8 +93,6 @@ class BetController extends Controller
 
     public function storeParlay(ParlayStoreRequest $request)
     {
-        // TODO: possible_payout
-
         $parlay = Parlay::create([
             "user_id" => $request->user()->id,
             "amount" => $request->validated("amount"),

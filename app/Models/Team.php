@@ -10,6 +10,7 @@ class Team extends Model
     use HasFactory;
 
     protected $fillable = [
+        'scraper_id',
         'name',
         'name_my',
     ];
