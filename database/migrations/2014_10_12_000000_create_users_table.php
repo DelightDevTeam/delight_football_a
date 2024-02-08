@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\UserStatus;
 use App\Enums\UserType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -25,7 +26,7 @@ return new class extends Migration
             $table->string('profile_mime')->nullable();
             $table->integer('profile_size')->nullable();
             $table->string('address')->nullable();
-            $table->integer('status')->default(0);
+            $table->integer('status')->default(UserStatus::Active->value);
             $table->decimal('max_for_mix_bet')->default('0');
             $table->decimal('max_for_single_bet')->default('0');
             $table->decimal('commission')->default('0');

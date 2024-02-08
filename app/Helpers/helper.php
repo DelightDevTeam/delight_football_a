@@ -35,3 +35,17 @@ function subtractBetweenTwoDecimalFloats(float $first, float $second)
 {
     return (($first * 100) - ($second * 100)) / 100;
 }
+
+function nearestLargerNumber($index, array $array) {
+    $keys = array_keys($array);
+
+    $parsedIndex = array_search($index, $keys);
+
+    if ($parsedIndex === false || $parsedIndex === count($keys) - 1) {
+        return null;
+    }
+
+    $nearestLargerIndex = $keys[$parsedIndex + 1];
+
+    return $array[$nearestLargerIndex];
+}

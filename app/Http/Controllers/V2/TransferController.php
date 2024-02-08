@@ -21,6 +21,7 @@ class TransferController extends Controller
             })
             ->paginate();
 
+        // TODO: remove end user frontend
         // TODO: filter
         // TODO: pagination
 

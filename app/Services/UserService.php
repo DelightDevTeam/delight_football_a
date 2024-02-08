@@ -28,6 +28,17 @@ class UserService
         ];
     }
 
+    public static function childUserType(UserType $current_user_type)
+    {
+        $user_types = [];
+
+        foreach (UserType::cases() as $user_type) {
+            $user_types[$user_type->rankPoint()] = $user_type;
+        }
+
+        return nearestLargerNumber($current_user_type->rankPoint(), $user_types);
+    }
+
     public static function getCommissionSettings(SlipType $slip_type, array $hierarchy, int $parlay_count = 0)
     {
         $data = [];
@@ -42,7 +53,8 @@ class UserService
         return $data;
     }
 
-    public static function parlayCommissionName(int $parlay_count){
+    public static function parlayCommissionName(int $parlay_count)
+    {
         return "parlay_{$parlay_count}_commission";
     }
 }

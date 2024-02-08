@@ -50,7 +50,7 @@
                         <tbody>
                             @foreach ($transfers as $index => $transfer)
                                 <tr>
-                                    <td>{{ $index }}</td>
+                                    <td>{{ $index + 1 }}</td>
                                     <td>{{ $transfer->created_at->setTimezone('Asia/Yangon')->format('Y-m-d H:i:s') }}</td>
                                     <td>{{ $transfer->from->holder->name }}</td>
                                     <td>{{ $transfer->to->holder->name }}</td>
