@@ -13,13 +13,13 @@ class TransferController extends Controller
         $id = auth()->id();
 
         $transfers = Transfer::with(["from.holder", "to.holder", "withdraw", "deposit"])
-            ->where(function($q) use($id){
-                $q->where("from_id", $id);
-                $q->orWhere("to_id", $id);
-            })
+            // ->where(function($q) use($id){
+            //     $q->where("from_id", $id);
+            //     $q->orWhere("to_id", $id);
+            // })
             ->whereDate("created_at", ">=", $request->get("from", now()->startOfDay()->format("Y-m-d")))
             ->whereDate("created_at", "<=", $request->get("to", now()->endOfDay()->format("Y-m-d")))
-            ->paginate();
+            ->paginate(1);
 
         // TODO: remove end user frontend
         // TODO: pagination
