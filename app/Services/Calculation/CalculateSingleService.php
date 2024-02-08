@@ -9,8 +9,6 @@ class CalculateSingleService extends CalculateSlipService{
     protected CalculateSingleBetService $calculateSingleBetService;
     protected BetStatus $result;
     protected int $win_percent;
-    protected float $profit;
-    protected float $payout;
     
     public function __construct(
         protected Single $single,
@@ -78,23 +76,7 @@ class CalculateSingleService extends CalculateSlipService{
         return $this;
     }
 
-    public function getProfit(){
-        if(!isset($this->profit)){
-            $this->calculateProfit();
-        }
-
-        return $this->profit;
-    }
-
     public function calculatePayout() {
         $this->payout = $this->getProfit() + $this->single->amount;
-    }
-    
-    public function getPayout(){
-        if(!isset($this->payout)){
-            $this->calculatePayout();
-        }
-
-        return $this->payout;
     }
 }

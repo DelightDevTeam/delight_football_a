@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\UserType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,6 +14,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('parent_id')->nullable();
             $table->string('username')->nullable();
             $table->string('name');
             $table->string('phone')->nullable()->unique();
@@ -23,12 +25,10 @@ return new class extends Migration
             $table->string('profile_mime')->nullable();
             $table->integer('profile_size')->nullable();
             $table->string('address')->nullable();
-            $table->integer('balance')->default(500000);
-             $table->integer('status')->default(0);
-            $table->unsignedBigInteger('agent_id')->default(1);
+            $table->integer('status')->default(0);
             $table->decimal('max_for_mix_bet')->default('0');
             $table->decimal('max_for_single_bet')->default('0');
-             $table->decimal('commission')->default('0');
+            $table->decimal('commission')->default('0');
             $table->decimal('high_commission')->default('0');
             $table->decimal('two_d_commission')->default('0');
             $table->decimal('three_d_commission')->default('0');
@@ -42,9 +42,9 @@ return new class extends Migration
             $table->decimal('m_c_nine_commission')->default('0');
             $table->decimal('m_c_ten_commission')->default('0');
             $table->decimal('m_c_eleven_commission')->default('0');
+            $table->string("type")->default(UserType::User)->value;
             $table->rememberToken();
             $table->timestamps();
-            $table->foreign('agent_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

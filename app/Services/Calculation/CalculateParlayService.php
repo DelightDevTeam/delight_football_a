@@ -9,8 +9,6 @@ class CalculateParlayService extends CalculateSlipService
 {
     protected BetStatus $result;
     protected array $parlay_bet_win_percents;
-    protected float $profit;
-    protected float $payout;
 
     public function __construct(
         protected Parlay $parlay,
@@ -106,26 +104,8 @@ class CalculateParlayService extends CalculateSlipService
         return $this;
     }
 
-    public function getProfit()
-    {
-        if (!isset($this->profit)) {
-            $this->calculateProfit();
-        }
-
-        return $this->profit;
-    }
-
     public function calculatePayout()
     {
         $this->payout = $this->getProfit() + $this->parlay->amount;
-    }
-
-    public function getPayout()
-    {
-        if (!isset($this->payout)) {
-            $this->calculatePayout();
-        }
-
-        return $this->payout;
     }
 }
