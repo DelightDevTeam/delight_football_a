@@ -18,144 +18,35 @@ class UsersTableSeeder extends Seeder
     {
         $admin = $this->createUser(UserType::Admin, "admin");
 
-        (new WalletService())->deposit($admin, 1000 *100000, ["name" => TransactionName::CapitalDeposit->value]);
-        
-        $mater_1 = $this->createUser(UserType::Master, "master_1", $admin->id);
+        (new WalletService())->deposit($admin, 1000 * 100000, TransactionName::CapitalDeposit);
 
-        $agent_1 = $this->createUser(UserType::Agent, "agent_1", $mater_1->id);
+        $master_1 = $this->createUser(UserType::Master, "master_1", $admin->id);
+        (new WalletService())->transfer($admin, $master_1, 100 * 100000, TransactionName::CreditTransfer);
+
+        $agent_1 = $this->createUser(UserType::Agent, "agent_1", $master_1->id);
+        (new WalletService())->transfer($master_1, $agent_1, 40 * 100000, TransactionName::CreditTransfer);
 
         $user_1 = $this->createUser(UserType::User, "user_1", $agent_1->id);
+        (new WalletService())->transfer($agent_1, $user_1, 20 * 100000, TransactionName::CreditTransfer);
         $user_2 = $this->createUser(UserType::User, "user_2", $agent_1->id);
+        (new WalletService())->transfer($agent_1, $user_2, 15 * 100000, TransactionName::CreditTransfer);
 
-        $agent_2 = $this->createUser(UserType::Agent, "agent_2", $mater_1->id);
+        $agent_2 = $this->createUser(UserType::Agent, "agent_2", $master_1->id);
+        (new WalletService())->transfer($master_1, $agent_2, 40 * 100000, TransactionName::CreditTransfer);
 
         $user_3 = $this->createUser(UserType::User, "user_3", $agent_2->id);
+        (new WalletService())->transfer($agent_2, $user_3, 10 * 100000, TransactionName::CreditTransfer);
         $user_4 = $this->createUser(UserType::User, "user_4", $agent_2->id);
-
-        // $users = [
-        //     [
-        //         'id'             => 1,
-        //         'name'           => 'Admin',
-        //         'phone'          => '09123456789',
-        //         'password'       => '$2y$10$qyxYm.2dlaXROvs0OrGHseo4qbeissRMqNWdhlcr/vUqE62vN94Fi', // password
-        //         'agent_id'       => 1,
-        //         'remember_token' => null,
-        //         'type' => 'admin',
-        //         'created_at'     => '2019-09-10 14:00:26',
-        //         'updated_at'     => '2019-09-10 14:00:26',
-        //     ],
-        //     [
-        //         'id'             => 2,
-        //         'name'           => 'Master',
-        //         'phone'          => '09112345678',
-        //         'password'       => '$2y$10$qyxYm.2dlaXROvs0OrGHseo4qbeissRMqNWdhlcr/vUqE62vN94Fi', // password
-        //         'agent_id'       => 2,
-        //         'remember_token' => null,
-        //         'type' => 'master',
-        //         'created_at'     => '2023-08-14 14:00:26',
-        //         'updated_at'     => '2023-08-14 14:00:26',
-        //     ],
-        //     [
-        //         'id'             => 3,
-        //         'name'           => 'Agent',
-        //         'phone'          => '09223456789',
-        //         'password'       => '$2y$10$qyxYm.2dlaXROvs0OrGHseo4qbeissRMqNWdhlcr/vUqE62vN94Fi', // password
-        //         'agent_id'       => 3,
-        //         'remember_token' => null,
-        //         'type' => 'agent',
-        //         'created_at'     => '2023-08-14 14:00:26',
-        //         'updated_at'     => '2023-08-14 14:00:26',
-        //     ],
-
-        //     [
-        //         'id'             => 4,
-        //         'name'           => 'User',
-        //         'phone'          => '09334567899',
-        //         'password'       => '$2y$10$qyxYm.2dlaXROvs0OrGHseo4qbeissRMqNWdhlcr/vUqE62vN94Fi', // password
-        //         'agent_id'       => 4,
-        //         'remember_token' => null,
-        //         'type' => 'user',
-        //         'created_at'     => '2023-08-14 14:00:26',
-        //         'updated_at'     => '2023-08-14 14:00:26',
-        //     ],
-
-        //     [
-        //         'id'             => 5,
-        //         'name'           => 'Master A',
-        //         'phone'          => '09334567890',
-        //         'password'       => '$2y$10$qyxYm.2dlaXROvs0OrGHseo4qbeissRMqNWdhlcr/vUqE62vN94Fi', // password
-        //         'agent_id'       => 1,
-        //         'remember_token' => null,
-        //         'type' => 'master',
-        //         'created_at'     => '2023-08-14 14:00:26',
-        //         'updated_at'     => '2023-08-14 14:00:26',
-        //     ],
-        //     [
-        //         'id'             => 6,
-        //         'name'           => 'Agent A',
-        //         'phone'          => '09334567891',
-        //         'password'       => '$2y$10$qyxYm.2dlaXROvs0OrGHseo4qbeissRMqNWdhlcr/vUqE62vN94Fi', // password
-        //         'agent_id'       => 5,
-        //         'remember_token' => null,
-        //         'type' => 'agent',
-        //         'created_at'     => '2023-08-14 14:00:26',
-        //         'updated_at'     => '2023-08-14 14:00:26',
-        //     ],
-        //     [
-        //         'id'             => 7,
-        //         'name'           => 'User A',
-        //         'phone'          => '09334567892',
-        //         'password'       => '$2y$10$qyxYm.2dlaXROvs0OrGHseo4qbeissRMqNWdhlcr/vUqE62vN94Fi', // password
-        //         'agent_id'       => 6,
-        //         'remember_token' => null,
-        //         'type' => 'admin',
-        //         'created_at'     => '2023-08-14 14:00:26',
-        //         'updated_at'     => '2023-08-14 14:00:26',
-        //     ],
-        //     [
-        //         'id'             => 8,
-        //         'name'           => 'User B',
-        //         'phone'          => '09334567893',
-        //         'password'       => '$2y$10$qyxYm.2dlaXROvs0OrGHseo4qbeissRMqNWdhlcr/vUqE62vN94Fi', // password
-        //         'agent_id'       => 6,
-        //         'remember_token' => null,
-        //         'type' => 'user',
-        //         'created_at'     => '2023-08-14 14:00:26',
-        //         'updated_at'     => '2023-08-14 14:00:26',
-        //     ],
-        //     [
-        //         'id'             => 9,
-        //         'name'           => 'User C',
-        //         'phone'          => '09334567894',
-        //         'password'       => '$2y$10$qyxYm.2dlaXROvs0OrGHseo4qbeissRMqNWdhlcr/vUqE62vN94Fi', // password
-        //         'agent_id'       => 6,
-        //         'remember_token' => null,
-        //         'type' => 'user',
-        //         'created_at'     => '2023-08-14 14:00:26',
-        //         'updated_at'     => '2023-08-14 14:00:26',
-        //     ],
-        //     [
-        //         'id'             => 10,
-        //         'name'           => 'User D',
-        //         'phone'          => '09334567895',
-        //         'password'       => '$2y$10$qyxYm.2dlaXROvs0OrGHseo4qbeissRMqNWdhlcr/vUqE62vN94Fi', // password
-        //         'agent_id'       => 6,
-        //         'remember_token' => null,
-        //         'type' => 'user',
-        //         'created_at'     => '2023-08-14 14:00:26',
-        //         'updated_at'     => '2023-08-14 14:00:26',
-        //     ]
-        // ];
-
-        // User::insert($users);
+        (new WalletService())->transfer($agent_2, $user_4, 5 * 100000, TransactionName::CreditTransfer);
     }
 
-    private function createUser(UserType $type, $phone, $parent_id=null){
+    private function createUser(UserType $type, $phone, $parent_id = null)
+    {
         return User::create([
             "parent_id" => $parent_id,
             "phone" => $phone,
             "name" => $phone,
-            "password" =>bcrypt("password"),
+            "password" => bcrypt("password"),
             "type" => $type,
         ]);
     }

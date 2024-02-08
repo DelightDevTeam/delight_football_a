@@ -2,9 +2,12 @@
 
 namespace App\Jobs;
 
+use App\Enums\BetStatus;
 use App\Models\Fixture;
 use App\Models\Slip;
+use App\Services\Calculation\CalculateCommissionService;
 use App\Services\Calculation\CalculateSingleService;
+use App\Services\PayoutService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -36,21 +39,52 @@ class CalculateSingleJob implements ShouldQueue
 
             $single = $slip->bettable;
 
+            if ($single->fixture->isCanceled()) {
+                $data = [
+                    "win_percent" => 0,
+                    "status" => BetStatus::Canceled,
+                    "profit" => 0,
+                    "payout" => $single->amount,
+                ];
+
+                $single->update($data);
+
+                $slip->update($data);
+
+                $payout = app(PayoutService::class);
+
+                $payout->transferRefund($slip, $slip->payout);
+
+                continue;
+            }
+
             $calculateSingleService =  new CalculateSingleService($single);
-            
+
             $data = [
                 "win_percent" => $calculateSingleService->getWinPercent(),
                 "status" => $calculateSingleService->getResult(),
                 "profit" => $calculateSingleService->getProfit(),
                 "payout" => $calculateSingleService->getPayout(),
             ];
-            
+
             $single->update($data);
-            
+
             $slip->update($data);
-            
-            // TODO: implement: commission share
-            // TODO: implement: payout
+
+            if ($slip->payout) {
+                $payout = app(PayoutService::class);
+
+                $payout->transferPayout($slip, $slip->payout);
+
+                $commission_percents = CalculateCommissionService::getCommissionPercents($single->commission_setting_obj);
+
+                $commission_amounts = CalculateCommissionService::calcCommissionAmounts(
+                    $commission_percents,
+                    $single->amount
+                );
+
+                CalculateCommissionService::transfer($slip, $commission_amounts);
+            }
         }
     }
 }

@@ -30,3 +30,8 @@ function convertHandicap(?array $handicap)
 
     return implode("", $handicap);
 }
+
+function subtractBetweenTwoDecimalFloats(float $first, float $second)
+{
+    return (($first * 100) - ($second * 100)) / 100;
+}

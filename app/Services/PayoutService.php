@@ -18,32 +18,41 @@ class PayoutService
 
     public function transferPayout(Slip $slip, float $amount)
     {
-        return $this->meta($slip, TransactionName::Payout);
         return $this->walletService->transfer(
             $this->admin_user,
             $slip->user,
             $amount,
-            $this->meta($slip, TransactionName::Payout)
+            TransactionName::Payout,
+            $this->meta($slip)
         );
     }
 
-    public function transferCommission(Slip $slip, float $amount)
+    public function transferRefund(Slip $slip, float $amount)
     {
         return $this->walletService->transfer(
             $this->admin_user,
             $slip->user,
             $amount,
-            $this->meta($slip, TransactionName::Commission)
+            TransactionName::Refund,
+            $this->meta($slip)
         );
     }
 
-    private function meta(Slip $slip, TransactionName $transaction_name)
+    public function transferCommission(User $user, Slip $slip, float $amount)
+    {
+        return $this->walletService->transfer(
+            $this->admin_user,
+            $user,
+            $amount,
+            TransactionName::Commission,
+            $this->meta($slip)
+        );
+    }
+
+    private function meta(Slip $slip)
     {
         return [
-            "name" => $transaction_name,
             "slip_id" => $slip->id,
-            "from_opening_balance" => $this->admin_user->balanceFloat,
-            "to_opening_balance" => $slip->user->balanceFloat,
         ];
     }
 }

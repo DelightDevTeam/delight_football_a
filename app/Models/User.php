@@ -47,16 +47,17 @@ class User extends Authenticatable implements Wallet
         'high_commission',
         'two_d_commission',
         'three_d_commission',
-        'm_c_two_commission',
-        'm_c_three_commission',
-        'm_c_four_commission',
-        'm_c_five_commission',
-        'm_c_six_commission',
-        'm_c_seven_commission',
-        'm_c_eight_commission',
-        'm_c_nine_commission',
-        'm_c_ten_commission',
-        'm_c_eleven_commission',
+        'single_commission',
+        'parlay_2_commission',
+        'parlay_3_commission',
+        'parlay_4_commission',
+        'parlay_5_commission',
+        'parlay_6_commission',
+        'parlay_7_commission',
+        'parlay_8_commission',
+        'parlay_9_commission',
+        'parlay_10_commission',
+        'parlay_11_commission',
         'type'
     ];
     protected $dates = ['created_at', 'updated_at'];
@@ -130,6 +131,10 @@ class User extends Authenticatable implements Wallet
     public function createdAgents()
     {
         return $this->hasMany(User::class, 'parent_id');
+    }
+
+    public function parent(){
+        return $this->belongsTo(User::class, "parent_id");
     }
 
     public function children(){

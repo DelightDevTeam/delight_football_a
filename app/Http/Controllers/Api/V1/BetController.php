@@ -20,6 +20,7 @@ use App\Models\Slip;
 use App\Models\User;
 use App\Services\Calculation\CalculateParlayService;
 use App\Services\Calculation\CalculateSingleService;
+use App\Services\UserService;
 use Illuminate\Support\Str;
 
 class BetController extends Controller
@@ -43,8 +44,12 @@ class BetController extends Controller
 
         $calculateSingleService = new CalculateSingleService($single);
 
+        $user_hierarchy = UserService::getUserHierarchy($user);
+        $commission_settings = UserService::getCommissionSettings(SlipType::Single, $user_hierarchy);
+
         $single->update([
-            "possible_payout" => $calculateSingleService->setWinPercent(100)->getPayout()
+            "possible_payout" => $calculateSingleService->setWinPercent(100)->getPayout(),
+            "commission_setting_obj" => $commission_settings
         ]);
 
         $slip = $this->storeSlip($single);
@@ -117,9 +122,15 @@ class BetController extends Controller
 
         $calculateSingleService = new CalculateParlayService($parlay);
 
+        $user_hierarchy = UserService::getUserHierarchy($user);
+        $commission_settings = UserService::getCommissionSettings(SlipType::Parlay, $user_hierarchy, count($request->bets()));
+
         $parlay->update([
-            "possible_payout" => $calculateSingleService->setParlayBetWinPercents($win_percents)->getPayout()
+            "possible_payout" => $calculateSingleService->setParlayBetWinPercents($win_percents)->getPayout(),
+            "commission_setting_obj" => $commission_settings
         ]);
+
+        // TODO: store commission data
 
         $slip = $this->storeSlip($parlay);
 

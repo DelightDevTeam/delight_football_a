@@ -11,7 +11,8 @@ enum TransactionName: string
     case Commission = 'commission';
     case Refund = "refund";
 
-    case Transfer = 'transfer';
+    case CreditTransfer = 'credit_transfer';
+    case DebitTransfer = 'debit_transfer';
 
     case CreditAdjustment = 'credit_adjustment';
     case DebitAdjustment = 'debit_adjustment';

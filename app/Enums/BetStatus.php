@@ -9,5 +9,5 @@ enum BetStatus: string
     case Win = "win";
     case Lose = "lose";
     case Draw = "draw";
-    case Cancelled = "cancelled";
+    case Canceled = "canceled";
 }
