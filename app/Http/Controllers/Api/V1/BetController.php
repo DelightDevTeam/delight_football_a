@@ -20,6 +20,7 @@ use App\Models\Slip;
 use App\Models\User;
 use App\Services\Calculation\CalculateParlayService;
 use App\Services\Calculation\CalculateSingleService;
+use App\Services\PayoutService;
 use App\Services\UserService;
 use Illuminate\Support\Str;
 
@@ -89,7 +90,7 @@ class BetController extends Controller
             "status" => BetStatus::Ongoing
         ]);
 
-        // TODO: deduct money
+        app(PayoutService::class)->transferStake($slip, $slip->amount);
 
         return response()->success(new SlipResource($slip));
     }
@@ -129,8 +130,6 @@ class BetController extends Controller
             "possible_payout" => $calculateSingleService->setParlayBetWinPercents($win_percents)->getPayout(),
             "commission_setting_obj" => $commission_settings
         ]);
-
-        // TODO: store commission data
 
         $slip = $this->storeSlip($parlay);
 
@@ -175,7 +174,7 @@ class BetController extends Controller
             "status" => BetStatus::Ongoing
         ]);
 
-        // TODO: deduct money
+        app(PayoutService::class)->transferStake($slip, $slip->amount);
 
         return response()->success([
             "data" => new SlipResource($slip)

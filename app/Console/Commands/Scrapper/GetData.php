@@ -49,7 +49,6 @@ class GetData extends Command
 
     protected function processLeagues(array $leagues)
     {
-        // TODO: fixed odd value from config
         $defaultMMOdd = config('system.default_mm_odd');
 
         foreach ($leagues as $league) {

@@ -6,8 +6,8 @@ enum TransactionName: string
 {
     case CapitalDeposit = "capital_deposit";
 
-    case Stake = 'payout';
-    case Payout = 'bet_win';
+    case Stake = 'stake';
+    case Payout = 'payout';
     case Commission = 'commission';
     case Refund = "refund";
 

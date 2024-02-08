@@ -16,6 +16,17 @@ class PayoutService
         $this->admin_user = User::adminUser();
     }
 
+    public function transferStake(Slip $slip, float $amount)
+    {
+        return $this->walletService->transfer(
+            $slip->user,
+            $this->admin_user,
+            $amount,
+            TransactionName::Stake,
+            $this->meta($slip)
+        );
+    }
+
     public function transferPayout(Slip $slip, float $amount)
     {
         return $this->walletService->transfer(
