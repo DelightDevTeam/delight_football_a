@@ -12,11 +12,13 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\PromotionController;
 use App\Http\Controllers\Admin\BannerTextController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\Transfer\TransferLogController;
+use App\Http\Controllers\V2\TransferController;
 
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-  require __DIR__ . '/amk.php';
+require __DIR__ . '/amk.php';
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', [App\Http\Controllers\User\WelcomeController::class, 'index'])->name('welcome');
@@ -139,6 +141,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'App\Http\Co
   // get all agent to user transfer log route
   Route::get('/get-all-agent-to-user-transfer-log', [App\Http\Controllers\Admin\Transfer\TransferLogController::class, 'AgentToUserTransferLog'])->name('get-all-agent-user-transfer-log');
   // user management complete route
+
+  Route::get("transfers", [TransferController::class, "index"]);
 });
 
 Route::get('football-index', [App\Http\Controllers\Football\FootballController::class, 'index']);
