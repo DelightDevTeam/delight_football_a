@@ -1,196 +1,196 @@
 @extends('admin_layouts.app')
 @section('styles')
 <style>
-.transparent-btn {
- background: none;
- border: none;
- padding: 0;
- outline: none;
- cursor: pointer;
- box-shadow: none;
- appearance: none;
- /* For some browsers */
-}
+  .transparent-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    outline: none;
+    cursor: pointer;
+    box-shadow: none;
+    appearance: none;
+    /* For some browsers */
+  }
 
 
-.custom-form-group {
- margin-bottom: 20px;
-}
+  .custom-form-group {
+    margin-bottom: 20px;
+  }
 
-.custom-form-group label {
- display: block;
- margin-bottom: 5px;
- font-weight: bold;
- color: #555;
-}
+  .custom-form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+  }
 
-.custom-form-group input,
-.custom-form-group select {
- width: 100%;
- padding: 10px 15px;
- border: 1px solid #e1e1e1;
- border-radius: 5px;
- font-size: 16px;
- color: #333;
-}
+  .custom-form-group input,
+  .custom-form-group select {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+  }
 
-.custom-form-group input:focus,
-.custom-form-group select:focus {
- border-color: #d33a9e;
- box-shadow: 0 0 5px rgba(211, 58, 158, 0.5);
-}
+  .custom-form-group input:focus,
+  .custom-form-group select:focus {
+    border-color: #d33a9e;
+    box-shadow: 0 0 5px rgba(211, 58, 158, 0.5);
+  }
 
-.submit-btn {
- background-color: #d33a9e;
- color: white;
- border: none;
- padding: 12px 20px;
- border-radius: 5px;
- cursor: pointer;
- font-size: 18px;
- font-weight: bold;
-}
+  .submit-btn {
+    background-color: #d33a9e;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+  }
 
-.submit-btn:hover {
- background-color: #b8328b;
-}
+  .submit-btn:hover {
+    background-color: #b8328b;
+  }
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/material-icons@1.13.12/iconfont/material-icons.min.css">
 @endsection
 @section('content')
 <div class="row justify-content-center">
- <div class="col-8">
-  <div class="container mt-2">
-   <div class="d-flex justify-content-between">
-    <h4>Agent Detail</h4>
-    <a class="btn btn-icon btn-2 btn-primary" href="{{ url('/admin/real-live-master-list') }}">
-     <span class="btn-inner--icon mt-1"><i class="material-icons">arrow_back</i>Back</span>
-    </a>
-   </div>
-   <div class="card">
-    <div class="table-responsive">
-     <table class="table align-items-center mb-0">
-      <tbody>
-       <tr>
-        <th>ID</th>
-        <td>{!! $user_detail->id !!}</td>
-       </tr>
-       <tr>
-        <th>User Name</th>
-        <td>{!! $user_detail->name !!}</td>
-       </tr>
-       <tr>
-        <th>Phone</th>
-        <td>{!! $user_detail->phone !!}</td>
-       </tr>
-       <tr>
-        <th>Role</th>
-        <td>
-         @foreach ($user_detail->roles as $role)
-         <span class="badge badge-pill badge-primary">{{ $role->title }}</span>
-         @endforeach
-        </td>
-       </tr>
-        <tr>
-          <th>Address</th>
-          <td>{!! $user_detail->address !!}</td>
-        </tr>
-        <tr>
-          <th>Balance</th>
-          <td>{!! $user_detail->balance !!}</td>
-        </tr>
-        <tr>
-          <th>Status</th>
-          {{-- if status == 0 activie, 1 ban using span badge --}}
-          <td>
-            @if ($user_detail->status == 0)
-            <span class="badge badge-pill badge-success">Active</span>
-            @else
-            <span class="badge badge-pill badge-danger">Ban</span>
-            @endif
-          </td>
+  <div class="col-8">
+    <div class="container mt-2">
+      <div class="d-flex justify-content-between">
+        <h4>Agent Detail</h4>
+        <a class="btn btn-icon btn-2 btn-primary" href="{{ url('/admin/real-live-master-list') }}">
+          <span class="btn-inner--icon mt-1"><i class="material-icons">arrow_back</i>Back</span>
+        </a>
+      </div>
+      <div class="card">
+        <div class="table-responsive">
+          <table class="table align-items-center mb-0">
+            <tbody>
+              <tr>
+                <th>ID</th>
+                <td>{!! $user_detail->id !!}</td>
+              </tr>
+              <tr>
+                <th>User Name</th>
+                <td>{!! $user_detail->name !!}</td>
+              </tr>
+              <tr>
+                <th>Phone</th>
+                <td>{!! $user_detail->phone !!}</td>
+              </tr>
+              <tr>
+                <th>Role</th>
+                <td>
+                  @foreach ($user_detail->roles as $role)
+                  <span class="badge badge-pill badge-primary">{{ $role->title }}</span>
+                  @endforeach
+                </td>
+              </tr>
+              <tr>
+                <th>Address</th>
+                <td>{!! $user_detail->address !!}</td>
+              </tr>
+              <tr>
+                <th>Balance</th>
+                <td>{!! $user_detail->balance !!}</td>
+              </tr>
+              <tr>
+                <th>Status</th>
+                {{-- if status == 0 activie, 1 ban using span badge --}}
+                <td>
+                  @if ($user_detail->status == 0)
+                  <span class="badge badge-pill badge-success">Active</span>
+                  @else
+                  <span class="badge badge-pill badge-danger">Ban</span>
+                  @endif
+                </td>
 
-        </tr>
-        <tr>
-          <th>max_for_mix_bet</th>
-          <td>{!! $user_detail->max_for_mix_bet !!}</td>
-        </tr>
-        <tr>
-          <th>max_for_single_bet</th>
-          <td>{!! $user_detail->max_for_single_bet !!}</td>
-        </tr>
-        <tr>
-          <th>commission</th>
-          <td>{!! $user_detail->commission !!} %</td>
-        </tr>
-        <tr>
-          <th>high_commission</th>
-          <td>{!! $user_detail->high_commission !!} %</td>
-        </tr>
-        <tr>
-          <th>two_d_commission</th>
-          <td>{!! $user_detail->two_d_commission !!} %</td>
-        </tr>
-        <tr>
-          <th>three_d_commission</th>
-          <td>{!! $user_detail->three_d_commission !!} %</td>
-        </tr>
-        <tr>
-          <th>match_count_two_commission</th>
-          <td>{!! $user_detail->m_c_two_commission !!} %</td>
-        </tr>
-        <tr>
-          <th>match_count_three_commission</th>
-          <td>{!! $user_detail->m_c_three_commission !!} %</td>
-        </tr>
-        <tr>
-          <th>match_count_four_commission</th>
-          <td>{!! $user_detail->m_c_four_commission !!} %</td>
-        </tr>
-        <tr>
-          <th>match_count_five_commission</th>
-          <td>{!! $user_detail->m_c_five_commission !!} %</td>
-        </tr>
-        <tr>
-          <th>match_count_six_commission</th>
-          <td>{!! $user_detail->m_c_six_commission !!} %</td>
-        </tr>
-        <tr>
-          <th>match_count_seven_commission</th>
-          <td>{!! $user_detail->m_c_seven_commission !!} %</td>
-        </tr>
-        <tr>
-          <th>match_count_eight_commission</th>
-          <td>{!! $user_detail->m_c_eight_commission !!} %</td>
-        </tr>
-        <tr>
-          <th>match_count_nine_commission</th>
-          <td>{!! $user_detail->m_c_nine_commission !!} %</td>
-        </tr>
-        <tr>
-          <th>match_count_ten_commission</th>
-          <td>{!! $user_detail->m_c_ten_commission !!} %</td>
-        </tr>
-        <tr>
-          <th>match_count_eleven_commission</th>
-          <td>{!! $user_detail->m_c_eleven_commission !!} %</td>
-        </tr>
+              </tr>
+              <tr>
+                <th>max_for_mix_bet</th>
+                <td>{!! $user_detail->max_for_mix_bet !!}</td>
+              </tr>
+              <tr>
+                <th>max_for_single_bet</th>
+                <td>{!! $user_detail->max_for_single_bet !!}</td>
+              </tr>
+              <tr>
+                <th>commission</th>
+                <td>{!! $user_detail->commission !!} %</td>
+              </tr>
+              <tr>
+                <th>high_commission</th>
+                <td>{!! $user_detail->high_commission !!} %</td>
+              </tr>
+              <tr>
+                <th>two_d_commission</th>
+                <td>{!! $user_detail->two_d_commission !!} %</td>
+              </tr>
+              <tr>
+                <th>three_d_commission</th>
+                <td>{!! $user_detail->three_d_commission !!} %</td>
+              </tr>
+              <tr>
+                <th>match_count_two_commission</th>
+                <td>{!! $user_detail->parlay_2_commission !!} %</td>
+              </tr>
+              <tr>
+                <th>match_count_three_commission</th>
+                <td>{!! $user_detail->parlay_3_commission !!} %</td>
+              </tr>
+              <tr>
+                <th>match_count_four_commission</th>
+                <td>{!! $user_detail->parlay_4_commission !!} %</td>
+              </tr>
+              <tr>
+                <th>match_count_five_commission</th>
+                <td>{!! $user_detail->parlay_5_commission !!} %</td>
+              </tr>
+              <tr>
+                <th>match_count_six_commission</th>
+                <td>{!! $user_detail->parlay_6_commission !!} %</td>
+              </tr>
+              <tr>
+                <th>match_count_seven_commission</th>
+                <td>{!! $user_detail->parlay_7_commission !!} %</td>
+              </tr>
+              <tr>
+                <th>match_count_eight_commission</th>
+                <td>{!! $user_detail->parlay_8_commission !!} %</td>
+              </tr>
+              <tr>
+                <th>match_count_nine_commission</th>
+                <td>{!! $user_detail->parlay_9_commission !!} %</td>
+              </tr>
+              <tr>
+                <th>match_count_ten_commission</th>
+                <td>{!! $user_detail->parlay_10_commission !!} %</td>
+              </tr>
+              <tr>
+                <th>match_count_eleven_commission</th>
+                <td>{!! $user_detail->parlay_11_commission !!} %</td>
+              </tr>
 
-       <tr>
-        <th>Create Date</th>
-        <td>{!! $user_detail->created_at !!}</td>
-       </tr>
-       <tr>
-        <th>Update Date</th>
-        <td>{!! $user_detail->updated_at !!}</td>
-       </tr>
-      </tbody>
-     </table>
+              <tr>
+                <th>Create Date</th>
+                <td>{!! $user_detail->created_at !!}</td>
+              </tr>
+              <tr>
+                <th>Update Date</th>
+                <td>{!! $user_detail->updated_at !!}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-   </div>
   </div>
- </div>
 </div>
 
 
@@ -203,66 +203,66 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
 
 <script>
-if (document.getElementById('choices-tags-edit')) {
- var tags = document.getElementById('choices-tags-edit');
- const examples = new Choices(tags, {
-  removeItemButton: true
- });
-}
+  if (document.getElementById('choices-tags-edit')) {
+    var tags = document.getElementById('choices-tags-edit');
+    const examples = new Choices(tags, {
+      removeItemButton: true
+    });
+  }
 </script>
 <script>
-if (document.getElementById('choices-roles')) {
- var role = document.getElementById('choices-roles');
- const examples = new Choices(role, {
-  removeItemButton: true
- });
-
- examples.setChoices(
-  [{
-    value: 'One',
-    label: 'Expired',
-    disabled: true
-   },
-   {
-    value: 'Two',
-    label: 'Out of Role',
-    selected: true
-   }
-  ],
-  'value',
-  'label',
-  false,
- );
-}
-// store role
-$(document).ready(function() {
- $('#submitForm').click(function(e) {
-  e.preventDefault();
-
-  $.ajax({
-   type: "POST",
-   url: "{{ route('admin.roles.store') }}",
-   data: $('form').serialize(),
-   success: function(response) {
-    Swal.fire({
-     icon: 'success',
-     title: 'Role created successfully',
-     showConfirmButton: false,
-     timer: 1500
+  if (document.getElementById('choices-roles')) {
+    var role = document.getElementById('choices-roles');
+    const examples = new Choices(role, {
+      removeItemButton: true
     });
-    // Reset the form after successful submission
-    $('form')[0].reset();
-   },
-   error: function(error) {
-    console.log(error);
-    Swal.fire({
-     icon: 'error',
-     title: 'Oops...',
-     text: 'Something went wrong!'
+
+    examples.setChoices(
+      [{
+          value: 'One',
+          label: 'Expired',
+          disabled: true
+        },
+        {
+          value: 'Two',
+          label: 'Out of Role',
+          selected: true
+        }
+      ],
+      'value',
+      'label',
+      false,
+    );
+  }
+  // store role
+  $(document).ready(function() {
+    $('#submitForm').click(function(e) {
+      e.preventDefault();
+
+      $.ajax({
+        type: "POST",
+        url: "{{ route('admin.roles.store') }}",
+        data: $('form').serialize(),
+        success: function(response) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Role created successfully',
+            showConfirmButton: false,
+            timer: 1500
+          });
+          // Reset the form after successful submission
+          $('form')[0].reset();
+        },
+        error: function(error) {
+          console.log(error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!'
+          });
+        }
+      });
     });
-   }
   });
- });
-});
 </script>
 @endsection
