@@ -10,6 +10,7 @@ use App\Enums\SlipType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\ParlayStoreRequest;
 use App\Http\Requests\Api\V1\SingleStoreRequest;
+use App\Http\Resources\Api\V1\SlipDetailResource;
 use App\Http\Resources\Api\V1\SlipResource;
 use App\Models\Market;
 use App\Models\Parlay;
@@ -25,6 +26,7 @@ class BetController extends Controller
 {
     public function storeSingle(SingleStoreRequest $request)
     {
+        // TODO: check insufficient balance
         $bet = $request->bet();
 
         $user = $request->user();
@@ -48,9 +50,7 @@ class BetController extends Controller
         $slip = $this->storeSlip($single);
 
         return response()->success([
-            "data" => [
-                "slip" => new SlipResource($slip)
-            ]
+            "data" => new SlipDetailResource($slip)
         ]);
     }
 
@@ -84,15 +84,15 @@ class BetController extends Controller
             "status" => BetStatus::Ongoing
         ]);
 
-        return response()->success([
-            "data" => [
-                "slip" => new SlipResource($slip)
-            ]
-        ]);
+        // TODO: deduct money
+
+        return response()->success(new SlipResource($slip));
     }
 
     public function storeParlay(ParlayStoreRequest $request)
     {
+        // TODO: check insufficient balance
+
         $parlay = Parlay::create([
             "user_id" => $request->user()->id,
             "amount" => $request->validated("amount"),
@@ -124,9 +124,7 @@ class BetController extends Controller
         $slip = $this->storeSlip($parlay);
 
         return response()->success([
-            "data" => [
-                "slip" => new SlipResource($slip)
-            ]
+            "data" => new SlipDetailResource($slip)
         ]);
     }
 
@@ -166,10 +164,10 @@ class BetController extends Controller
             "status" => BetStatus::Ongoing
         ]);
 
+        // TODO: deduct money
+
         return response()->success([
-            "data" => [
-                "slip" => new SlipResource($slip)
-            ]
+            "data" => new SlipResource($slip)
         ]);
     }
 
@@ -198,6 +196,7 @@ class BetController extends Controller
             "type" => $bet_type->value,
             "{$bet_type->value}_obj" => [
                 "handicap" => $market->{$bet_type->value},
+                "converted_handicap" => convertHandicap($market->{$bet_type->value}),
                 "odd" => $market->{"{$bet_type->value}_odd"}
             ],
             "home_team_id" => $fixture->home_team_id,

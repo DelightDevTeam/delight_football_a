@@ -4,7 +4,7 @@ use App\Http\Controllers\Api\V1\BetController;
 use App\Http\Controllers\Api\V1\FixtureController;
 use App\Http\Controllers\Api\V1\LoginController;
 use App\Http\Controllers\Api\V1\MarketController;
-use App\Http\Controllers\Api\V1\ParlayController;
+use App\Http\Controllers\Api\V1\ProfileController;
 use App\Http\Controllers\Api\V1\SlipController;
 use App\Http\Controllers\Api\V1\TestController;
 use App\Http\Controllers\Api\V1\TransactionRequestController;
@@ -48,5 +48,7 @@ Route::group(["prefix" => "v1"], function () {
         Route::post("withdraw-requests", [TransactionRequestController::class, "storeWithdrawRequest"]);
 
         Route::get("fixtures", FixtureController::class);
+
+        Route::get("profile", [ProfileController::class, "show"]);
     });
 });

@@ -14,9 +14,7 @@ class MarketController extends Controller
         $data = MarketService::ignoreTime()->getMarkets();
 
         return response()->success([
-            "data" => [
-                "markets" => LeagueResource::collection($data)
-            ]
+            "data" => LeagueResource::collection($data)
         ]);
     }
 }

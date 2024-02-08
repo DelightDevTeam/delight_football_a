@@ -40,6 +40,10 @@ class Slip extends Model
         $q->whereNotIn("status", [BetStatus::Pending, BetStatus::Ongoing]);
     }
 
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
 
     public function isPending(){
         return $this->status == BetStatus::Pending;

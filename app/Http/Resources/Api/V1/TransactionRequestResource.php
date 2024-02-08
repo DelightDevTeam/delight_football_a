@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources\Api\v1;
+namespace App\Http\Resources\Api\V1;
 
 use App\Models\DepositRequest;
 use Illuminate\Http\Request;

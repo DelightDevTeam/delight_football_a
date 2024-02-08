@@ -17,6 +17,7 @@ class ParlayResource extends JsonResource
         return [
             "id" => $this->id,
             "amount" => $this->amount,
+            "possible_payout" => $this->possible_payout,
             "payout" => $this->payout,
             "status" => $this->status,
             "parlay_bets" => ParlayBetResource::collection($this->parlayBets),

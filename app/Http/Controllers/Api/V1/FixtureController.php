@@ -41,10 +41,6 @@ class FixtureController extends Controller
             ->orderBy("name")
             ->get();
 
-        return response()->success([
-            "data" => [
-                'leagues' => LeagueResource::collection($leagues)
-            ]
-        ]);
+        return response()->success(LeagueResource::collection($leagues));
     }
 }

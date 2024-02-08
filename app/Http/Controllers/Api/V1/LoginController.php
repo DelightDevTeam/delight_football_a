@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\LoginRequest;
+use App\Http\Resources\Api\V1\UserResource;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -14,13 +15,13 @@ class LoginController extends Controller
 
         if (auth()->attempt($credentials)) {
             $user = $request->user();
-
+            
             // TODO: implement: change to .env
             $token = $user->createToken("DELIGHT_FB");
 
             return response()->success([
                 "data" => [
-                    "user" =>  $request->user(),
+                    "user" =>  new UserResource($user),
                     "token" => $token->plainTextToken
                 ]
             ]);

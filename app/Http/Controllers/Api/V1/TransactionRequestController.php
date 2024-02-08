@@ -18,21 +18,13 @@ class TransactionRequestController extends Controller
     public function index(){
         $requests = TransactionRequest::with("transactionable")->where("user_id", auth()->user()->id)->paginate();
 
-        return response()->success([
-            "data" => [
-                "requests" => TransactionRequestSummaryResource::collection($requests)
-            ]
-        ]);
+        return response()->success(TransactionRequestSummaryResource::collection($requests));
     }
 
     public function show(TransactionRequest $request){
         $request->load("transactionable");
 
-        return response()->success([
-            "data" => [
-                "request" => new TransactionRequestResource($request)
-            ]
-        ]);
+        return response()->success(new TransactionRequestResource($request));
     }
 
     public function storeDepositRequest(DepositRequestStoreRequest $request){

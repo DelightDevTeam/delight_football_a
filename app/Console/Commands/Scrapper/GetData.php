@@ -50,7 +50,7 @@ class GetData extends Command
     protected function processLeagues(array $leagues)
     {
         // TODO: fixed odd value from config
-        $defaultMMOdd = 0.98;
+        $defaultMMOdd = config('system.default_mm_odd');
 
         foreach ($leagues as $league) {
             $dbLeague = $this->createOrUpdateLeague($league);

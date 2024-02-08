@@ -12,7 +12,7 @@ function isPositiveValue($value)
     return !isNegativeValue($value);
 }
 
-function convertHandicap(array $handicap)
+function convertHandicap(?array $handicap)
 {
     if (!$handicap) {
         return "";

@@ -39,7 +39,8 @@ class ParlayStoreRequest extends FormRequest
             'bets' => [
                 'required',
                 'array',
-                'min:2'
+                'min:2',
+                'max:11'
             ],
             'bets.*.market_id' => ['required', 'exists:markets,id', function ($attribute, $value, Closure $fail) {
                 $index = explode('.', $attribute)[1];

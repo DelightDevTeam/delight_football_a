@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Enums\UserType;
 use App\Models\Admin\Role;
 use App\Models\Football\MixBet;
 use App\Models\Admin\Permission;
@@ -16,13 +18,14 @@ use Bavix\Wallet\Traits\HasWalletFloat;
 class User extends Authenticatable implements Wallet
 {
     use HasApiTokens, HasFactory, Notifiable, HasWalletFloat;
-
+    
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
+        'parent_id',
         'name',
         'username',
         'profile',
@@ -37,9 +40,7 @@ class User extends Authenticatable implements Wallet
         'cbpay_no',
         'wavepay_no',
         'ayapay_no',
-        'balance',
         'status',
-        'agent_id',
         'max_for_mix_bet',
         'max_for_single_bet',
         'commission',
@@ -56,8 +57,7 @@ class User extends Authenticatable implements Wallet
         'm_c_nine_commission',
         'm_c_ten_commission',
         'm_c_eleven_commission',
-
-
+        'type'
     ];
     protected $dates = ['created_at', 'updated_at'];
 
@@ -80,6 +80,7 @@ class User extends Authenticatable implements Wallet
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'type' => UserType::class
     ];
 
     public function getIsAdminAttribute()
@@ -128,16 +129,24 @@ class User extends Authenticatable implements Wallet
     // Other users that this user (a master) has created (agents)
     public function createdAgents()
     {
-        return $this->hasMany(User::class, 'agent_id');
+        return $this->hasMany(User::class, 'parent_id');
+    }
+
+    public function children(){
+        return $this->hasMany(User::class, "parent_id");
     }
 
     // The master that created this user (an agent)
     public function createdByMaster()
     {
-        return $this->belongsTo(User::class, 'agent_id');
+        return $this->belongsTo(User::class, 'parent_id');
     }
     public function mixbets()
     {
         return $this->hasMany(MixBet::class, 'playerId');
+    }
+
+    public static function adminUser(){
+        return User::where("type", UserType::Admin)->first();
     }
 }

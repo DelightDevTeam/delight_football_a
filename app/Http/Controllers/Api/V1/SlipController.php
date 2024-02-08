@@ -30,20 +30,12 @@ class SlipController extends Controller
                     $q->whereIsCalculated();
                 }
             })->latest()->paginate();
-
-        return response()->success([
-            "data" => [
-                "slips" => SlipSummaryResource::collection($slips)
-            ]
-        ]);
+            
+        return response()->success(SlipSummaryResource::collection($slips));
     }
 
     public function show(Slip $slip)
     {
-        // $slip->load(["bettable" => function ($q) {
-        //     $q->with(["fixture.league", "fixture.homeTeam", "fixture.awayTeam"]);
-        // }]);
-
         $slip->load(['bettable' => function (MorphTo $morphTo) {
             $morphTo->morphWith([
                 Single::class => ["fixture" => function ($q) {
