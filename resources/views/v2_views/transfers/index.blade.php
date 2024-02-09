@@ -106,7 +106,7 @@
                 </tbody>
             </table>
         </div>
-        <div>
+        <div class="mx-3">
             {{$transfers->links()}}
         </div>
     </div>
@@ -114,7 +114,7 @@
 </div>
 @endsection
 @section('scripts')
-<script src="{{ asset('admin_app/assets/js/plugins/datatables.js') }}"></script>
+<!-- <script src="{{ asset('admin_app/assets/js/plugins/datatables.js') }}"></script> -->
 
 <script>
     if (document.getElementById('users-search')) {

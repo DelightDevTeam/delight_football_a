@@ -24,6 +24,7 @@ class TransferController extends Controller
         // TODO: remove end user frontend
         // TODO: pagination
 
+        // return $transfers;
         return view('v2_views.transfers.index', ["transfers" => $transfers]);
     }
 }
