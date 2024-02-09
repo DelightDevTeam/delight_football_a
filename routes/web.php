@@ -13,6 +13,8 @@ use App\Http\Controllers\Admin\PromotionController;
 use App\Http\Controllers\Admin\BannerTextController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\V2\TransferController;
+use App\Http\Controllers\V2\TransferLogController;
+use App\Http\Controllers\V2\TransferPointController;
 use App\Http\Controllers\V2\UserController;
 
 // Route::get('/', function () {
@@ -142,9 +144,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'c
   Route::get('/get-all-agent-to-user-transfer-log', [App\Http\Controllers\Admin\Transfer\TransferLogController::class, 'AgentToUserTransferLog'])->name('get-all-agent-user-transfer-log');
   // user management complete route
 
-  Route::get("transfers", [TransferController::class, "index"]);
+  Route::get("transfers-logs", [TransferLogController::class, "index"])->name("transfer-logs.index");
 
   Route::resource("users", UserController::class);
+
+  Route::get("transfer-points/{user}", [TransferPointController::class, "create"])->name("transfer-points.create");
+  Route::post("transfer-points/{user}", [TransferPointController::class, "store"])->name("transfer-points.store");
 });
 
 Route::get('football-index', [App\Http\Controllers\Football\FootballController::class, 'index']);

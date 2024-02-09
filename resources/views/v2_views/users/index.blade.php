@@ -44,6 +44,7 @@
                             <th>#</th>
                             <th>UserName</th>
                             <th>Phone</th>
+                            <th>Balance</th>
                             <th>Status</th>
                             <th>Created_at</th>
                             <th>Action</th>
@@ -57,6 +58,7 @@
                                         <span class="d-block">{{ $user->name }}</span>
                                     </td>
                                     <td>{{ $user->phone }}</td>
+                                    <td><strong>{{ $user->balanceFloat }}</strong></td>
                                     <td>
                                         <small
                                             class="badge badge-{{ $user->status == UserStatus::Active ? 'success' : 'danger' }}">{{ $user->status == UserStatus::Active ? 'active' : 'ban' }}</small>
@@ -101,10 +103,10 @@
                                         </form>
                                     </td>
                                     <td>
-                                        <a href="{{ route('admin.agent-transfer', $user->id) }}" data-bs-toggle="tooltip"
+                                        <a href="{{ route('admin.transfer-points.create', ["user" => $user->id, "type" => "credit"] ) }}" data-bs-toggle="tooltip"
                                             data-bs-original-title="Transfer To Agent" class="btn btn-info btn-sm"><i
                                                 class="fas fa-right-left text-white me-1"></i>ငွေလွဲမည်</a>
-                                        <a href="{{ route('admin.agent-cash-out', $user->id) }}" data-bs-toggle="tooltip"
+                                        <a href="{{ route('admin.transfer-points.create', ["user" => $user->id, "type" => "debit"]) }}" data-bs-toggle="tooltip"
                                             data-bs-original-title="Cash Out From Agent" class="btn btn-warning btn-sm">
                                             <i class="fas fa-right-left text-white me-1"></i>ငွေထုတ်မည်
                                         </a>

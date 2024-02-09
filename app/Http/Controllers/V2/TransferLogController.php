@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Bavix\Wallet\Models\Transfer;
 use Illuminate\Http\Request;
 
-class TransferController extends Controller
+class TransferLogController extends Controller
 {
     public function index(Request $request)
     {
@@ -23,6 +23,6 @@ class TransferController extends Controller
 
         // TODO: remove end user frontend
         
-        return view('v2_views.transfers.index', ["transfers" => $transfers]);
+        return view('v2_views.transfer-logs.index', ["transfers" => $transfers]);
     }
 }

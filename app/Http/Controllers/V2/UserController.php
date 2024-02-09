@@ -61,6 +61,10 @@ class UserController extends Controller
         return redirect()->route("admin.users.index");
     }
 
+    public function show(User $user){
+        return view("v2_views.users.show", ["user" => $user]);
+    }
+
     public function edit(User $user)
     {
         $max_commissions = $this->getMaxCommissions();
