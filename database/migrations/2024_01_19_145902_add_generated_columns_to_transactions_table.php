@@ -31,6 +31,7 @@ return new class extends Migration
         );
 
         Schema::table("transactions", function (Blueprint $table) {
+            $table->index('name');
             $table->index('slip_id');
         });
     }

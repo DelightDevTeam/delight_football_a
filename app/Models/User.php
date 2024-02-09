@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use App\Enums\UserStatus;
 use App\Enums\UserType;
 use App\Models\Admin\Role;
 use App\Models\Football\MixBet;
@@ -81,7 +82,8 @@ class User extends Authenticatable implements Wallet
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
-        'type' => UserType::class
+        'type' => UserType::class,
+        'status' => UserStatus::class,
     ];
 
     public function getIsAdminAttribute()

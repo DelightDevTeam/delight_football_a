@@ -12,8 +12,8 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\PromotionController;
 use App\Http\Controllers\Admin\BannerTextController;
 use App\Http\Controllers\Admin\PermissionController;
-use App\Http\Controllers\Admin\Transfer\TransferLogController;
 use App\Http\Controllers\V2\TransferController;
+use App\Http\Controllers\V2\UserController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -32,7 +32,7 @@ Route::get('/register', [LoginController::class, 'userRegister'])->name('registe
 
 // Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'App\Http\Controllers\Admin', 'middleware' => ['auth']], function () {
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'App\Http\Controllers\Admin', 'middleware' => ['auth', 'checkBanned']], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'checkBanned']], function () {
   // Permissions
   Route::delete('permissions/destroy', [PermissionController::class, 'massDestroy'])->name('permissions.massDestroy');
   Route::resource('permissions', PermissionController::class);
@@ -143,6 +143,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'App\Http\Co
   // user management complete route
 
   Route::get("transfers", [TransferController::class, "index"]);
+
+  Route::resource("users", UserController::class);
 });
 
 Route::get('football-index', [App\Http\Controllers\Football\FootballController::class, 'index']);

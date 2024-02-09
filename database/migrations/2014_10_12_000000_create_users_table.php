@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('profile_mime')->nullable();
             $table->integer('profile_size')->nullable();
             $table->string('address')->nullable();
-            $table->integer('status')->default(UserStatus::Active->value);
+            $table->string('status')->default(UserStatus::Active->value);
             $table->decimal('max_for_mix_bet')->default('0');
             $table->decimal('max_for_single_bet')->default('0');
             $table->decimal('commission')->default('0');

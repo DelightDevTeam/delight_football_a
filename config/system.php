@@ -9,7 +9,7 @@ return [
 
     "parlay_fee" => 0.2,
      
-    "single_commission" => 0.05,
+    "max_single_commission" => 0.05,
 
     "max_parlay_commission" => 0.05,
 ];

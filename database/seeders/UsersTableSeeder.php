@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Services\WalletService;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Str;
 
 class UsersTableSeeder extends Seeder
 {
@@ -45,7 +46,8 @@ class UsersTableSeeder extends Seeder
         return User::create([
             "parent_id" => $parent_id,
             "phone" => $phone,
-            "name" => $phone,
+            "username" => $phone,
+            "name" => Str::title($phone),
             "password" => bcrypt("password"),
             "type" => $type,
         ]);
