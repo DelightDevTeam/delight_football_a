@@ -4,6 +4,8 @@ namespace App\Enums;
 
 enum TransactionName: string
 {
+    use HasLabelTrait;
+
     case CapitalDeposit = "capital_deposit";
 
     case Stake = 'stake';
