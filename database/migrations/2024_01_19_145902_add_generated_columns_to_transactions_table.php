@@ -19,11 +19,11 @@ return new class extends Migration
             ADD COLUMN slip_id bigint GENERATED ALWAYS AS ( json_unquote(json_extract(meta, '$.slip_id'))) STORED,
             ADD COLUMN opening_balance DECIMAL (64, 0) GENERATED ALWAYS AS (
                     CASE WHEN (json_unquote(json_extract(meta, '$.name'))) = 'capital_deposit' THEN
-                        (json_unquote(json_extract(meta, '$.user_opening_balance')))
+                        (json_unquote(json_extract(meta, '$.user_opening_balance'))) * 100
                     WHEN TYPE = 'deposit' THEN
-                    (json_unquote(json_extract(meta, '$.to_opening_balance')))
+                    (json_unquote(json_extract(meta, '$.to_opening_balance'))) * 100
                     WHEN TYPE = 'withdraw' THEN
-                    (json_unquote(json_extract(meta, '$.from_opening_balance')))
+                    (json_unquote(json_extract(meta, '$.from_opening_balance'))) * 100
                     ELSE
                         NULL
                     END) STORED;
@@ -41,6 +41,5 @@ return new class extends Migration
      */
     public function down(): void
     {
-        
     }
 };

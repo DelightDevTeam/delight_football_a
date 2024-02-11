@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Enums\TransactionName;
-use App\Enums\UserType;
 use App\Models\Slip;
 use App\Models\User;
 

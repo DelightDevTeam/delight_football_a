@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\V1\FixtureController;
 use App\Http\Controllers\Api\V1\LoginController;
 use App\Http\Controllers\Api\V1\MarketController;
 use App\Http\Controllers\Api\V1\ProfileController;
+use App\Http\Controllers\Api\V1\ReportController;
 use App\Http\Controllers\Api\V1\SlipController;
 use App\Http\Controllers\Api\V1\TestController;
 use App\Http\Controllers\Api\V1\TransactionRequestController;
@@ -28,11 +29,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(["prefix" => "v1"], function () {
     Route::post("login", [LoginController::class, "login"]);
-    Route::post("test", TestController::class);
-
+    
     Route::get("markets", MarketController::class);
-
+    
     Route::group(["middleware" => ["auth:sanctum"]], function () {
+        Route::post("test", TestController::class);
         Route::post("singles", [BetController::class, "storeSingle"]);
         Route::post("singles/{slip:uuid}/confirm", [BetController::class, "confirmSingle"]);
         Route::post("parlays", [BetController::class, "storeParlay"]);
@@ -46,6 +47,8 @@ Route::group(["prefix" => "v1"], function () {
 
         Route::post("deposit-requests", [TransactionRequestController::class, "storeDepositRequest"]);
         Route::post("withdraw-requests", [TransactionRequestController::class, "storeWithdrawRequest"]);
+
+        Route::get("report", ReportController::class);
 
         Route::get("fixtures", FixtureController::class);
 

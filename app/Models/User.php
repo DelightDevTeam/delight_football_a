@@ -156,4 +156,8 @@ class User extends Authenticatable implements Wallet
     public static function adminUser(){
         return User::where("type", UserType::Admin)->first();
     }
+
+    public function isAdmin(){
+        return $this->type == UserType::Admin;
+    }
 }
