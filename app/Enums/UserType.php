@@ -18,14 +18,4 @@ enum UserType: string
             self::User => 40,
         };
     }
-
-    public function label(): string
-    {
-        return match ($this) {
-            self::Admin => "Admin",
-            self::Master => 'Master',
-            self::Agent => "Agent",
-            self::User => "User",
-        };
-    }
 }

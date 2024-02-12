@@ -18,6 +18,7 @@ use App\Models\ParlayBet;
 use App\Models\Single;
 use App\Models\Slip;
 use App\Models\User;
+use App\Services\Calculation\CalculateCommissionService;
 use App\Services\Calculation\CalculateParlayService;
 use App\Services\Calculation\CalculateSingleService;
 use App\Services\PayoutService;
@@ -46,7 +47,7 @@ class BetController extends Controller
         $calculateSingleService = new CalculateSingleService($single);
 
         $user_hierarchy = UserService::getUserHierarchy($user);
-        $commission_settings = UserService::getCommissionSettings(SlipType::Single, $user_hierarchy);
+        $commission_settings = CalculateCommissionService::getCommissionSettings(SlipType::Single, $user_hierarchy);
 
         $single->update([
             "possible_payout" => $calculateSingleService->setWinPercent(100)->getPayout(),
@@ -124,7 +125,7 @@ class BetController extends Controller
         $calculateSingleService = new CalculateParlayService($parlay);
 
         $user_hierarchy = UserService::getUserHierarchy($user);
-        $commission_settings = UserService::getCommissionSettings(SlipType::Parlay, $user_hierarchy, count($request->bets()));
+        $commission_settings = CalculateCommissionService::getCommissionSettings(SlipType::Parlay, $user_hierarchy, count($request->bets()));
 
         $parlay->update([
             "possible_payout" => $calculateSingleService->setParlayBetWinPercents($win_percents)->getPayout(),

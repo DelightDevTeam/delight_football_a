@@ -2,6 +2,7 @@
 
 namespace App\Services\Calculation;
 
+use App\Enums\SlipType;
 use App\Enums\TransactionName;
 use App\Enums\UserType;
 use App\Models\Slip;
@@ -37,7 +38,7 @@ class CalculateCommissionService
         return $data;
     }
 
-    public static function transfer(Slip $slip, array $amounts,)
+    public static function transfer(Slip $slip, array $amounts)
     {
         $hierarchy = UserService::getUserHierarchy($slip->user);
 
@@ -50,5 +51,29 @@ class CalculateCommissionService
                 $payout->transferCommission($user, $slip, $transfer_amount);
             }
         }
+    }
+
+    public static function getCommissionSettings(SlipType $slip_type, array $hierarchy, int $parlay_count = 0)
+    {
+        $data = [];
+        foreach ($hierarchy as $key => $user) {
+            if ($slip_type == SlipType::Single) {
+                $data[$key] = $user->{self::singleCommissionName()};
+            } else {
+                $data[$key] = $user->{self::parlayCommissionName($parlay_count)};
+            }
+        }
+
+        return $data;
+    }
+
+    private static function singleCommissionName()
+    {
+        return "single_commission";
+    }
+
+    private static function parlayCommissionName(int $parlay_count)
+    {
+        return "parlay_{$parlay_count}_commission";
     }
 }
