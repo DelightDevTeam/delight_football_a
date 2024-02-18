@@ -116,49 +116,49 @@
         <i class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">manage_accounts</i>
         <span class="nav-link-text ms-2 ps-1">Master Control</span>
       </a>
-       <div class="collapse show" id="pagesExamples">
-          <ul class="nav">
-            <li class="nav-item ">
-              <div class="collapse " id="masterControl">
-                <ul class="nav nav-sm flex-column">
-                  <li class="nav-item">
-                    <a class="nav-link text-white " href="{{ route('admin.agent-list')}}">
-                      <span class="sidenav-mini-icon"> <i class="fas fa-users"></i> </span>
-                      <span class="sidenav-normal  ms-2  ps-1"> Agent Lists </span>
-                    </a>
-                  </li>
+      <div class="collapse show" id="pagesExamples">
+        <ul class="nav">
+          <li class="nav-item ">
+            <div class="collapse " id="masterControl">
+              <ul class="nav nav-sm flex-column">
+                <li class="nav-item">
+                  <a class="nav-link text-white " href="{{ route('admin.agent-list')}}">
+                    <span class="sidenav-mini-icon"> <i class="fas fa-users"></i> </span>
+                    <span class="sidenav-normal  ms-2  ps-1"> Agent Lists </span>
+                  </a>
+                </li>
 
-                  <li class="nav-item">
-                    <a class="nav-link text-white " href="{{ route('admin.agent-create')}}">
-                      <span class="sidenav-mini-icon"> <i class="fas fa-users"></i> </span>
-                      <span class="sidenav-normal  ms-2  ps-1"> Agent Create </span>
-                    </a>
-                  </li>
+                <li class="nav-item">
+                  <a class="nav-link text-white " href="{{ route('admin.agent-create')}}">
+                    <span class="sidenav-mini-icon"> <i class="fas fa-users"></i> </span>
+                    <span class="sidenav-normal  ms-2  ps-1"> Agent Create </span>
+                  </a>
+                </li>
 
-                  <li class="nav-item">
-                    <a class="nav-link text-white " href="{{ url('/admin/get-all-master-to-agent-transfer-log') }}">
-                      <span class="sidenav-mini-icon"> T L </span>
-                      <span class="sidenav-normal  ms-2  ps-1"> TransferLog </span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link text-white " href="{{ url('/admin/get-all-master-to-agent-daily-status-transfer-log') }}">
-                      <span class="sidenav-mini-icon"> D S </span>
-                      <span class="sidenav-normal  ms-2  ps-1">Daily Status </span>
-                    </a>
-                  </li>
+                <li class="nav-item">
+                  <a class="nav-link text-white " href="{{ url('/admin/get-all-master-to-agent-transfer-log') }}">
+                    <span class="sidenav-mini-icon"> T L </span>
+                    <span class="sidenav-normal  ms-2  ps-1"> TransferLog </span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-white " href="{{ url('/admin/get-all-master-to-agent-daily-status-transfer-log') }}">
+                    <span class="sidenav-mini-icon"> D S </span>
+                    <span class="sidenav-normal  ms-2  ps-1">Daily Status </span>
+                  </a>
+                </li>
 
-                   <li class="nav-item">
-                    <a class="nav-link text-white " href="{{ url('/admin/get-all-master-to-agent-monthly-status-transfer-log') }}">
-                      <span class="sidenav-mini-icon"> M S </span>
-                      <span class="sidenav-normal  ms-2  ps-1">Monthly Status </span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-          </ul>
-        </div>
+                <li class="nav-item">
+                  <a class="nav-link text-white " href="{{ url('/admin/get-all-master-to-agent-monthly-status-transfer-log') }}">
+                    <span class="sidenav-mini-icon"> M S </span>
+                    <span class="sidenav-normal  ms-2  ps-1">Monthly Status </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
     </li>
     @elseif($role->title == "Agent")
     <li class="nav-item">
@@ -594,4 +594,5 @@
         @csrf
       </form>
     </li>
+
   </ul>

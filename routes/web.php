@@ -16,6 +16,7 @@ use App\Http\Controllers\V2\TransferLogController;
 use App\Http\Controllers\Admin\PromotionController;
 use App\Http\Controllers\Admin\BannerTextController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Api\V1\FixtureController;
 use App\Http\Controllers\V2\TransferPointController;
 
 // Route::get('/', function () {
@@ -154,6 +155,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'c
 
   // Fixtures route
   Route::get("fixtures", [FixturesController::class, "index"])->name("fixtures.index");
+  Route::get("fixtures/{id}", [FixturesController::class, "edit"])->name("fixtures.edit");
+  Route::post('/fixtures/{id}', [FixturesController::class, "update"])->name('fixtures.update');
 });
 
 Route::get('football-index', [App\Http\Controllers\Football\FootballController::class, 'index']);

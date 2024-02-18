@@ -1,8 +1,7 @@
 <div class="collapse navbar-collapse w-auto h-auto" id="sidenav-collapse-main">
     <ul class="navbar-nav">
         <li class="nav-item mb-2 mt-0">
-            <a data-bs-toggle="collapse" href="#ProfileNav" class="nav-link text-white" aria-controls="ProfileNav"
-                role="button" aria-expanded="false">
+            <a data-bs-toggle="collapse" href="#ProfileNav" class="nav-link text-white" aria-controls="ProfileNav" role="button" aria-expanded="false">
                 <img src="{{ Auth::user()->profile }}" class="avatar">
                 <span class="nav-link-text ms-2 ps-1">{{ Auth::user()->name }}</span>
             </a>
@@ -37,6 +36,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link text-white " href="{{ route('admin.fixtures.index') }}">
+                <span class="sidenav-mini-icon"> <i class="fas fa-users"></i> </span>
+                <span class="sidenav-normal  ms-2  ps-1"> Fixtures </span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link text-white " href="{{ route('admin.transfer-logs.index') }}">
                 <span class="sidenav-mini-icon"> <i class="fas fa-users"></i> </span>
                 <span class="sidenav-normal  ms-2  ps-1">TODO Report </span>
@@ -45,33 +50,31 @@
         {{-- @if (auth()->user()->isAdmin())
             <li class="nav-item ">
                 <a class="nav-link text-white " href="{{ route('admin.banners.index') }}">
-                    <span class="sidenav-mini-icon"> <i class="fa-solid fa-panorama"></i> </span>
-                    <span class="sidenav-normal  ms-2  ps-1"> Banner </span>
-                </a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link text-white " href="{{ route('admin.games.index') }}">
-                    <span class="sidenav-mini-icon"> <i class="fa-solid fa-gamepad"></i> </span>
-                    <span class="sidenav-normal  ms-2  ps-1"> Game Links </span>
-                </a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link text-white " href="{{ route('admin.text.index') }}">
-                    <span class="sidenav-mini-icon"> <i class="fa-solid fa-bullhorn"></i> </span>
-                    <span class="sidenav-normal  ms-2  ps-1"> Banner Text </span>
-                </a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link text-white " href="{{ route('admin.promotions.index') }}">
-                    <span class="sidenav-mini-icon"> <i class="fas fa-gift"></i> </span>
-                    <span class="sidenav-normal  ms-2  ps-1"> Promotions </span>
-                </a>
-            </li>
+        <span class="sidenav-mini-icon"> <i class="fa-solid fa-panorama"></i> </span>
+        <span class="sidenav-normal  ms-2  ps-1"> Banner </span>
+        </a>
+        </li>
+        <li class="nav-item ">
+            <a class="nav-link text-white " href="{{ route('admin.games.index') }}">
+                <span class="sidenav-mini-icon"> <i class="fa-solid fa-gamepad"></i> </span>
+                <span class="sidenav-normal  ms-2  ps-1"> Game Links </span>
+            </a>
+        </li>
+        <li class="nav-item ">
+            <a class="nav-link text-white " href="{{ route('admin.text.index') }}">
+                <span class="sidenav-mini-icon"> <i class="fa-solid fa-bullhorn"></i> </span>
+                <span class="sidenav-normal  ms-2  ps-1"> Banner Text </span>
+            </a>
+        </li>
+        <li class="nav-item ">
+            <a class="nav-link text-white " href="{{ route('admin.promotions.index') }}">
+                <span class="sidenav-mini-icon"> <i class="fas fa-gift"></i> </span>
+                <span class="sidenav-normal  ms-2  ps-1"> Promotions </span>
+            </a>
+        </li>
         @endif --}}
         <li class="nav-item">
-            <a href="{{ route('logout') }}"
-                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                class="nav-link text-white">
+            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link text-white">
                 <span class="sidenav-mini-icon"> <i class="fas fa-right-from-bracket"></i> </span>
                 <span class="sidenav-normal ms-2 ps-1">Logout</span>
             </a>
@@ -79,4 +82,5 @@
                 @csrf
             </form>
         </li>
+
     </ul>
