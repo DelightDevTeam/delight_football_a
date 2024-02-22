@@ -24,7 +24,7 @@ class LoginRequest extends FormRequest
         // TODO: implement: switch between phone and email
         return [
             "phone" => ["required"],
-            "password" => ['string', 'min:6']
+            "password" => ['required','string', 'min:6']
         ];
     }
 }

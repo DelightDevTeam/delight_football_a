@@ -4,19 +4,19 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\V2\UserController;
 use App\Http\Controllers\Admin\GameController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\V2\FixturesController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\PromotionController;
 use App\Http\Controllers\Admin\BannerTextController;
 use App\Http\Controllers\Admin\PermissionController;
-use App\Http\Controllers\Backend\WinLoseReportController;
-use App\Http\Controllers\V2\TransferController;
 use App\Http\Controllers\V2\TransferLogController;
 use App\Http\Controllers\V2\TransferPointController;
-use App\Http\Controllers\V2\UserController;
+use App\Http\Controllers\V2\WinLoseReportController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -153,6 +153,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'c
 
   Route::get("transfer-points/{user}", [TransferPointController::class, "create"])->name("transfer-points.create");
   Route::post("transfer-points/{user}", [TransferPointController::class, "store"])->name("transfer-points.store");
+
+  // Fixtures route
+  Route::get("fixtures", [FixturesController::class, "index"])->name("fixtures.index");
+  Route::get("fixtures/{id}", [FixturesController::class, "edit"])->name("fixtures.edit");
+  Route::post('/fixtures/{id}', [FixturesController::class, "update"])->name('fixtures.update');
 });
 
 Route::get('football-index', [App\Http\Controllers\Football\FootballController::class, 'index']);
