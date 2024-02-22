@@ -28,7 +28,7 @@ class LoginController extends Controller
         }
 
         return response()->error([
-            'message' => 'Invalid credentials. Please try again.'
+            'message' => 'Phone or password was wrong!'
         ], 401);
     }
 }
