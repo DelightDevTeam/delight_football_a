@@ -14,9 +14,11 @@ class WinLoseReportController extends Controller
         $from = $request->get("from", Carbon::today("Asia/Yangon")->subDay());
         $to = $request->get("to", Carbon::today("Asia/Yangon"));
 
-        return FinicalReport::where("user_id", $request->user()->id)
-        ->where("date", ">=", $from)
-        ->where("date", "<=", $to)
-        ->paginate();
+        $finicals = FinicalReport::where("user_id", $request->user()->id)
+            ->where("date", ">=", $from)
+            ->where("date", "<=", $to)
+            ->paginate();
+
+        return view('v2_views.win_lose.index', compact('finicals'));
     }
 }

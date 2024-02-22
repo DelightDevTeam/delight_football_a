@@ -36,6 +36,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link text-white " href="{{ route('admin.win-lose.index') }}">
+                <span class="sidenav-mini-icon"> <i class="fas fa-users"></i> </span>
+                <span class="sidenav-normal  ms-2  ps-1"> Win_Lose Report </span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link text-white " href="{{ route('admin.fixtures.index') }}">
                 <span class="sidenav-mini-icon"> <i class="fas fa-users"></i> </span>
                 <span class="sidenav-normal  ms-2  ps-1"> Fixtures </span>
