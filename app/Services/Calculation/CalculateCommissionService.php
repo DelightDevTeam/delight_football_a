@@ -32,7 +32,7 @@ class CalculateCommissionService
     {
         $data = [];
         foreach ($percents as $key => $percent) {
-            $data[$key] = number_format((float) ($amount * ($percent / 100)), 2, '.', '');
+            $data[$key] = round((float) ($amount * ($percent / 100)), 2);
         }
 
         return $data;

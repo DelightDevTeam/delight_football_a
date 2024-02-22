@@ -14,11 +14,29 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 class Transaction extends BavixTransaction
 {
     /**
+     * @var string[]
+     */
+    protected $fillable = [
+        'payable_type',
+        'payable_id',
+        'wallet_id',
+        'uuid',
+        'type',
+        'amount',
+        'confirmed',
+        'meta',
+        'is_report_generated',
+        'created_at',
+        'updated_at',
+    ];
+
+    /**
      * @var array<string, string>
      */
     protected $casts = [
         'wallet_id' => 'int',
         'confirmed' => 'bool',
+        'is_report_generated' => 'bool',
         'meta' => 'json',
         'name' => TransactionName::class
     ];

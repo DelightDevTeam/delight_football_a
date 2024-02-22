@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Enums\UserType;
 use App\Models\User;
+use App\Models\UserHierarchy;
 
 class UserService
 {
@@ -14,16 +15,18 @@ class UserService
 
     public static function getUserHierarchy(User $user)
     {
-        $agent = $user->parent()->first();
-        $master = $agent->parent()->first();
-        $admin = $master->parent()->first();
+        $hierarchy = UserHierarchy::with("parent")
+            ->orderBy("rank_point")
+            ->where('user_id', $user->id)
+            ->get();
 
-        return [
-            UserType::Admin->rankPoint() => $admin,
-            UserType::Master->rankPoint() => $master,
-            UserType::Agent->rankPoint() => $agent,
-            UserType::User->rankPoint() => $user,
-        ];
+        $data = [];
+
+        foreach ($hierarchy as $user) {
+            $data[$user->type->rankPoint()] = $user->parent;
+        }
+
+        return $data;
     }
 
     public static function childUserType(UserType $current_user_type)

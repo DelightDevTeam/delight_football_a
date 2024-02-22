@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\PromotionController;
 use App\Http\Controllers\Admin\BannerTextController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Backend\WinLoseReportController;
 use App\Http\Controllers\V2\TransferController;
 use App\Http\Controllers\V2\TransferLogController;
 use App\Http\Controllers\V2\TransferPointController;
@@ -145,6 +146,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'c
   // user management complete route
 
   Route::get("transfers-logs", [TransferLogController::class, "index"])->name("transfer-logs.index");
+
+  Route::get("win-lose", WinLoseReportController::class)->name("win-lose.index");
 
   Route::resource("users", UserController::class);
 

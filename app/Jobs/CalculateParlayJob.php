@@ -41,6 +41,8 @@ class CalculateParlayJob implements ShouldQueue
         foreach ($slips as $slip) {
             // TODO: implement: db transaction
 
+            // TODO: prevent double calculation
+
             $parlay = $slip->bettable;
 
             $parlay_bets = $parlay->parlayBets;

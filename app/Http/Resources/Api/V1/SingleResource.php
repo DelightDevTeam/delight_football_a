@@ -18,6 +18,7 @@ class SingleResource extends JsonResource
 
         return [
             "id" => $this->id,
+            "fixture_id" => $this->fixture_id,
             "amount" => $this->amount,
             "possible_payout" => $this->possible_payout,
             "payout" => $this->payout,

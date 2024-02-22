@@ -76,6 +76,10 @@ class Fixture extends Model
         $q->whereNot("ft_status", FixtureStatus::NS);
     }
 
+    public function canCalculate(){
+        return $this->ft_status != FixtureStatus::NS;
+    }
+
     public function isCanceled(){
         return $this->ft_status == FixtureStatus::CANC;
     }

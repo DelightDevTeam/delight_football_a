@@ -11,17 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('finical_reports', function (Blueprint $table) {
+        Schema::create('user_hierarchies', function (Blueprint $table) {
             $table->id();
             $table->foreignId("user_id");
-            $table->date("date");
-            $table->integer("turnover");
-            $table->integer("payout");
-            $table->integer("commission");
-        });
-
-        Schema::table("finical_reports", function(Blueprint $table){
-            $table->unique(["user_id", "date"]);
+            $table->foreignId("parent_id");
+            $table->string("type");
+            $table->integer("rank_point");
+            $table->timestamps();
         });
     }
 
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('finical_reports');
+        Schema::dropIfExists('user_hierarchies');
     }
 };

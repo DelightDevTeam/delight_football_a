@@ -30,7 +30,7 @@ class CalculateSingleJob implements ShouldQueue
     /**
      * Execute the job.
      */
-    public function handle(): void
+    public function handle()
     {
         $slips = Slip::with("bettable.fixture")->whereIsOngoing()->get();
 
@@ -38,6 +38,10 @@ class CalculateSingleJob implements ShouldQueue
             // TODO: implement: db transaction
 
             $single = $slip->bettable;
+
+            if (!$single->fixture->canCalculate() || !$slip->isOngoing()) {
+                continue;
+            }
 
             if ($single->fixture->isCanceled()) {
                 $data = [

@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Enums\UserStatus;
 use App\Enums\UserType;
+use App\Events\UserCreatedEvent;
 use App\Models\Admin\Role;
 use App\Models\Football\MixBet;
 use App\Models\Admin\Permission;
@@ -86,6 +87,10 @@ class User extends Authenticatable implements Wallet
         'status' => UserStatus::class,
     ];
 
+    protected $dispatchesEvents = [
+        "created" => UserCreatedEvent::class,
+    ];
+
     public function getIsAdminAttribute()
     {
         return $this->roles()->where('id', 1)->exists();
@@ -141,6 +146,10 @@ class User extends Authenticatable implements Wallet
 
     public function children(){
         return $this->hasMany(User::class, "parent_id");
+    }
+
+    public function hierarchy(){
+        return $this->hasMany(UserHierarchy::class);
     }
 
     // The master that created this user (an agent)

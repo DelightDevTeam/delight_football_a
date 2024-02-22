@@ -12,6 +12,10 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::table('transactions', function (Blueprint $table) {
+            $table->boolean("is_report_generated")->default(false)->index();
+        });
+
         DB::statement(
             <<<SQL
             ALTER TABLE transactions
@@ -41,5 +45,10 @@ return new class extends Migration
      */
     public function down(): void
     {
+        if(Schema::hasColumn('transactions', 'is_report_generated')) {
+            Schema::table("transactions", function (Blueprint $table) {
+                $table->dropColumn('is_report_generated');
+            });
+        }
     }
 };

@@ -65,6 +65,8 @@ class MarketSeeder extends Seeder
         if ($this->flip() || $force) {
             $odd = rand(50, 99) / 100;
 
+            $odd = 0.80;
+
             return [
                 "ab" => [rand(0, 3), rand(0, 100)],
                 "ab_odd" => $odd,
@@ -78,6 +80,8 @@ class MarketSeeder extends Seeder
     {
         if ($this->flip() || $force) {
             $odd = rand(50, 99) / 100;
+
+            $odd = 0.80;
 
             return [
                 "ou" => [rand(0, 3), rand(0, 100)],

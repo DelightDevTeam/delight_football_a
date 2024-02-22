@@ -18,6 +18,7 @@ class ParlayBetResource extends JsonResource
 
         return [
             "id" => $this->id,
+            "fixture_id" => $this->fixture_id,
             "status" => $this->status,
             "home_team" => new TeamResource($this->fixture->homeTeam),
             "away_team" =>  new TeamResource($this->fixture->awayTeam),

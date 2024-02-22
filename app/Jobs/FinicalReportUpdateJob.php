@@ -1,32 +1,37 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1;
+namespace App\Jobs;
 
-use App\Enums\OuSelectableSide;
 use App\Enums\TransactionName;
 use App\Enums\UserType;
-use App\Http\Controllers\Controller;
-use App\Jobs\CalculateSingleJob;
 use App\Models\FinicalReport;
-use App\Models\Slip;
 use App\Models\Transaction;
-use App\Models\User;
-use App\Services\Calculation\CalculateCommissionService;
-use App\Services\Calculation\CalculateSingleBetService;
-use App\Services\PayoutService;
 use App\Services\UserService;
-use App\Services\WalletService;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldBeUnique;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\DB;
 
-class TestController extends Controller
+class FinicalReportUpdateJob implements ShouldQueue, ShouldBeUnique
 {
-    public function __invoke(Request $request)
-    {
-        // $slip_ids = Slip::whereIsOngoing()->get("id")->pluck("id")->toArray();
-        // return (new CalculateSingleJob($slip_ids))->handle();
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    /**
+     * Create a new job instance.
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Execute the job.
+     */
+    public function handle(): void
+    {
         Transaction::with("payable")
             ->where("is_report_generated", false)
             ->whereIn("name", [
