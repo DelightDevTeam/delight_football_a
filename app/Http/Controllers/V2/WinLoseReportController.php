@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\V2;
 
 use App\Http\Controllers\Controller;
 use App\Models\FinicalReport;
