@@ -18,11 +18,13 @@ class Parlay extends Model
         "payout",
         "commission_setting_obj",
         "status",
+        "calculated_at"
     ];
 
     protected $casts = [
         "status" => BetStatus::class,
         'commission_setting_obj' => 'json',
+        "calculated_at" => "datetime"
     ];
 
     public function parlayBets(){

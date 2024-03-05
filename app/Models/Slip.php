@@ -18,11 +18,13 @@ class Slip extends Model
         "profit",
         "payout",
         "status",
+        "calculated_at"
     ];
 
     protected $casts = [
         "status" => BetStatus::class,
-        "bettable_type" => SlipType::class
+        "bettable_type" => SlipType::class,
+        "calculated_at" => "datetime"
     ];
 
     public function bettable()

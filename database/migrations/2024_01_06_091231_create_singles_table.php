@@ -24,9 +24,9 @@ return new class extends Migration
             $table->foreignId("lower_team_id");
             $table->foreignId("handicap_team_id");
             $table->decimal("amount");
-            $table->decimal("possible_payout")->nullable();
-            $table->decimal("profit")->nullable();
-            $table->decimal("payout")->nullable();
+            $table->decimal("possible_payout", 12, 2)->nullable();
+            $table->decimal("profit", 12, 2)->nullable();
+            $table->decimal("payout", 12, 2)->nullable();
             $table->json("commission_setting_obj")->nullable();
             $table->string("status")->default(BetStatus::Pending->value);
             $table->integer("win_percent")->nullable();
@@ -35,6 +35,7 @@ return new class extends Migration
             $table->string("ab_selected_side")->nullable();
             $table->json("ou_obj")->nullable();
             $table->string("ou_selected_side")->nullable();
+            $table->dateTime("calculated_at")->nullable();
             $table->timestamps();
         });
     }

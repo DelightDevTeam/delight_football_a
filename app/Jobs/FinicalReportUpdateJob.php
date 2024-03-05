@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Enums\BetStatus;
 use App\Enums\TransactionName;
 use App\Enums\UserType;
 use App\Models\FinicalReport;
@@ -32,7 +33,7 @@ class FinicalReportUpdateJob implements ShouldQueue, ShouldBeUnique
      */
     public function handle(): void
     {
-        Transaction::with("payable")
+        Transaction::with(["payable", "slip"])
             ->where("is_report_generated", false)
             ->whereIn("name", [
                 TransactionName::Stake,
@@ -44,15 +45,22 @@ class FinicalReportUpdateJob implements ShouldQueue, ShouldBeUnique
             ->orderBy("payable_id")
             ->chunkById(100, function ($transactions) {
                 $items = [];
-
+                $ids = [];
                 foreach ($transactions as $transaction) {
                     $hierarchy = UserService::getUserHierarchy($transaction->payable);
+                    
+                    $slip = $transaction->slip;
 
-                    $report_date = $this->reportDate($transaction->created_at);
+                    if(!$slip->calculated_at){
+                        continue;
+                    }
+
+                    $ids[] = $transaction->id;
+
+                    $report_date = $this->reportDate($slip->calculated_at);
 
                     foreach ($hierarchy as $user) {
                         $key = $report_date . "_" . $user->id;
-
                         if (!isset($items[$key])) {
                             $items[$key] = [
                                 "date" => $report_date,
@@ -92,8 +100,7 @@ class FinicalReportUpdateJob implements ShouldQueue, ShouldBeUnique
 
                 $report_dates = collect($items)->pluck("date");
 
-                $existing_reports = FinicalReport::whereIn("date", $report_dates)->select(DB::raw('CONCAT(date, "_", user_id) as bbb'))->pluck("bbb")->toArray();
-
+                $existing_reports = FinicalReport::whereIn("date", $report_dates)->select(DB::raw('CONCAT(date, "_", user_id) as unique_report_key'))->pluck("unique_report_key")->toArray();
 
                 $new_reports = collect($items)->filter(function ($item) use ($existing_reports) {
                     return !in_array($item["date"] . "_" . $item["user_id"], $existing_reports);
@@ -117,7 +124,7 @@ class FinicalReportUpdateJob implements ShouldQueue, ShouldBeUnique
                     FinicalReport::where("date", $date)->where("user_id", $user_id)->incrementEach($update_report);
                 }
 
-                Transaction::whereIn("id", $transactions->pluck("id"))->update([
+                Transaction::whereIn("id", $ids)->update([
                     "is_report_generated" => true
                 ]);
             });

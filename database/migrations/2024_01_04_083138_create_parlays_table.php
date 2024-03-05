@@ -16,11 +16,12 @@ return new class extends Migration
             $table->id();
             $table->foreignId("user_id");
             $table->decimal("amount");
-            $table->decimal("possible_payout")->nullable();
-            $table->decimal("profit")->nullable();
-            $table->decimal("payout")->nullable();
+            $table->decimal("possible_payout", 12, 2)->nullable();
+            $table->decimal("profit", 12, 2)->nullable();
+            $table->decimal("payout", 12, 2)->nullable();
             $table->json("commission_setting_obj")->nullable();
             $table->string("status")->default(BetStatus::Pending->value);
+            $table->dateTime("calculated_at")->nullable();
             $table->timestamps();
         });
     }

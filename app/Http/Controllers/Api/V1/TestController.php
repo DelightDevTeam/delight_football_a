@@ -24,8 +24,8 @@ class TestController extends Controller
 {
     public function __invoke(Request $request)
     {
-        // $slip_ids = Slip::whereIsOngoing()->get("id")->pluck("id")->toArray();
-        // return (new CalculateSingleJob($slip_ids))->handle();
+        $slip_ids = Slip::whereIsOngoing()->get("id")->pluck("id")->toArray();
+        return (new CalculateSingleJob($slip_ids))->handle();
 
         Transaction::with("payable")
             ->where("is_report_generated", false)

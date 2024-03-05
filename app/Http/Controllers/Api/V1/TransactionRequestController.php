@@ -16,6 +16,8 @@ use Illuminate\Support\Str;
 class TransactionRequestController extends Controller
 {
     public function index(){
+        // TODO: request form from backend
+
         $requests = TransactionRequest::with("transactionable")->where("user_id", auth()->user()->id)->paginate();
 
         return response()->success(TransactionRequestSummaryResource::collection($requests));

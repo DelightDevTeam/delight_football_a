@@ -49,6 +49,7 @@ class CalculateSingleJob implements ShouldQueue
                     "status" => BetStatus::Canceled,
                     "profit" => 0,
                     "payout" => $single->amount,
+                    "calculated_at" => now()
                 ];
 
                 $single->update($data);
@@ -69,6 +70,7 @@ class CalculateSingleJob implements ShouldQueue
                 "status" => $calculateSingleService->getResult(),
                 "profit" => $calculateSingleService->getProfit(),
                 "payout" => $calculateSingleService->getPayout(),
+                "calculated_at" => now()
             ];
 
             $single->update($data);

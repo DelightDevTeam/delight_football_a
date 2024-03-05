@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Enums\UserType;
 use App\Models\User;
 use App\Models\UserHierarchy;
+use Illuminate\Support\Facades\Cache;
 
 class UserService
 {
@@ -15,18 +16,20 @@ class UserService
 
     public static function getUserHierarchy(User $user)
     {
-        $hierarchy = UserHierarchy::with("parent")
-            ->orderBy("rank_point")
-            ->where('user_id', $user->id)
-            ->get();
+        return Cache::remember("user_hierarchy_" . $user->id, 60, function () use ($user) {
+            $hierarchy = UserHierarchy::with("parent")
+                ->orderBy("rank_point")
+                ->where('user_id', $user->id)
+                ->get();
 
-        $data = [];
+            $data = [];
 
-        foreach ($hierarchy as $user) {
-            $data[$user->type->rankPoint()] = $user->parent;
-        }
+            foreach ($hierarchy as $user) {
+                $data[$user->type->rankPoint()] = $user->parent;
+            }
 
-        return $data;
+            return $data;
+        });
     }
 
     public static function childUserType(UserType $current_user_type)

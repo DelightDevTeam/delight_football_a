@@ -36,6 +36,7 @@ class Single extends Model
         "ab_selected_side",
         "ou_obj",
         "ou_selected_side",
+        "calculated_at"
     ];
 
     protected $casts = [
@@ -46,6 +47,7 @@ class Single extends Model
         'ab_selected_side' => AbSelectableSide::class,
         'ou_obj' => 'json',
         'ou_selected_side' => OuSelectableSide::class,
+        "calculated_at" => "datetime"
     ];
 
     public function slip()

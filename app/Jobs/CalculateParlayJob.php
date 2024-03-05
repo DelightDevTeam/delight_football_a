@@ -81,7 +81,8 @@ class CalculateParlayJob implements ShouldQueue
 
                 $parlay_bet->update([
                     "win_percent" => $calculateParlayBetService->getWinPercent(),
-                    "status" => $calculateParlayBetService->getResult()
+                    "status" => $calculateParlayBetService->getResult(),
+                    "calculated_at" => now()
                 ]);
             }
 
@@ -94,6 +95,7 @@ class CalculateParlayJob implements ShouldQueue
                     "status" => BetStatus::Canceled,
                     "profit" => 0,
                     "payout" => $parlay->amount,
+                    "calculated_at" => now()
                 ];
     
                 $parlay->update($data);
@@ -111,6 +113,7 @@ class CalculateParlayJob implements ShouldQueue
                 "status" => $calculateParlayService->getResult(),
                 "profit" => $calculateParlayService->getProfit(),
                 "payout" => $calculateParlayService->getPayout(),
+                "calculated_at" => now()
             ];
 
             $parlay->update($data);

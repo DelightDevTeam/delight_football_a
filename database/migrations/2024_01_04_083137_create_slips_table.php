@@ -19,9 +19,10 @@ return new class extends Migration
             $table->string("bettable_type");
             $table->foreignId("bettable_id");
             $table->decimal("amount");
-            $table->decimal("profit")->nullable();
-            $table->decimal("payout")->nullable();
+            $table->decimal("profit", 12, 2)->nullable();
+            $table->decimal("payout", 12, 2)->nullable();
             $table->string("status")->default(BetStatus::Pending->value);
+            $table->dateTime("calculated_at")->nullable();
             $table->timestamps();
         });
     }

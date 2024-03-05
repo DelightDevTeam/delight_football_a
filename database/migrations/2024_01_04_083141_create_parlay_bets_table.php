@@ -32,6 +32,7 @@ return new class extends Migration
             $table->string("ab_selected_side")->nullable();
             $table->json("ou_obj")->nullable();
             $table->string("ou_selected_side")->nullable();
+            $table->dateTime("calculated_at")->nullable();
             $table->timestamps();
         });
     }

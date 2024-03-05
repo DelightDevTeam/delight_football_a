@@ -105,4 +105,8 @@ class Transaction extends BavixTransaction
 
         $this->opening_balance = $math->round($math->mul($amount, $decimalPlaces));
     }
+
+    public function slip(){
+        return $this->belongsTo(Slip::class);
+    }
 }

@@ -69,11 +69,11 @@ class BetController extends Controller
             ], 422);
         }
 
-        if (!$slip->isPending()) {
-            return response()->error([
-                "message" => "Slip can't confirm twice",
-            ], 422);
-        }
+        // if (!$slip->isPending()) {
+        //     return response()->error([
+        //         "message" => "Slip can't confirm twice",
+        //     ], 422);
+        // }
 
         $slip->load("bettable");
 
